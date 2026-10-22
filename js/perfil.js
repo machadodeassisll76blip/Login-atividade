@@ -34,6 +34,7 @@ function lerFormulario() {
     github: textoSeguro(campos.github.value), rede: textoSeguro(campos.rede.value),
     status: campos.status.value, pronomes: textoSeguro(campos.pronomes.value),
     cor: /^#[0-9a-f]{6}$/i.test(campos.cor.value) ? campos.cor.value : "#ed101b",
+    tema: /^#[0-9a-f]{6}$/i.test($("#corTemaPerfil").value) ? $("#corTemaPerfil").value : "#ed101b",
     foto: perfil.foto || "", banner: perfil.banner || ""
   };
 }
@@ -48,6 +49,7 @@ function preencherFormulario() {
   campos.status.value = perfil.status || "Disponível";
   campos.pronomes.value = perfil.pronomes || "";
   campos.cor.value = perfil.cor || "#ed101b";
+  $("#corTemaPerfil").value = (() => { try { return localStorage.getItem("arasakaThemeColor") || "#ed101b"; } catch { return "#ed101b"; } })();
   $("#fotoPerfil").value = "";
   $("#bannerPerfil").value = "";
   atualizarPreview();
@@ -55,9 +57,11 @@ function preencherFormulario() {
 function atualizarPreview() {
   const p = lerFormulario();
   document.documentElement.style.setProperty("--profile-accent", p.cor);
-  document.documentElement.style.setProperty("--red", p.cor);
+  const corTema = p.tema;
+  document.documentElement.style.setProperty("--red", corTema);
+  document.documentElement.style.setProperty("--red-hover", "color-mix(in srgb, " + corTema + " 78%, white)");
   const seletorTema = document.querySelector("#themeColor");
-  if (seletorTema) seletorTema.value = p.cor;
+  if (seletorTema) seletorTema.value = corTema;
   $("#previewNome").textContent = p.nome;
   $("#previewHandle").textContent = "@" + usuarioAtual;
   $("#previewBio").textContent = p.bio || p.titulo || "Sua biografia aparece aqui.";
@@ -111,6 +115,7 @@ function atualizarPreview() {
   $("#contadorBio").textContent = p.bio.length;
 }
 Object.values(campos).forEach((campo) => campo.addEventListener("input", atualizarPreview));
+$("#corTemaPerfil").addEventListener("input", atualizarPreview);
 function lerImagem(arquivo, tipo) {
   if (!arquivo) return;
   if (!["image/png", "image/jpeg", "image/webp", "image/gif"].includes(arquivo.type)) {
@@ -142,7 +147,7 @@ form.addEventListener("submit", (event) => {
   }
   try {
     localStorage.setItem(chavePerfil, JSON.stringify(novo));
-    localStorage.setItem("arasakaThemeColor", novo.cor);
+    localStorage.setItem("arasakaThemeColor", novo.tema);
     const usuarios = (() => { try { const x = JSON.parse(localStorage.getItem("usuarios") || "[]"); return Array.isArray(x) ? x : []; } catch { return []; } })();
     localStorage.setItem("usuarios", JSON.stringify(usuarios.map((u) => u.usuario === usuarioAtual ? { ...u, nome: novo.nome } : u)));
     sessao.nome = novo.nome;
