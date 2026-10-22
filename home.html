@@ -4,87 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070707">
-  <meta name="description" content="Página inicial do ambiente Arasaka.">
+  <meta name="description" content="Terminal corporativo de demonstração da Arasaka.">
   <title>Arasaka | Home</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <p class="sidebar-brand">ARASAKA</p>
+      <p class="sidebar-brand">ARASAKA<span style="color:#777;font-size:.55em;display:block;letter-spacing:.24em;margin-top:5px">CORPORATION // NET</span></p>
       <p class="nav-label">Workspace</p>
       <nav class="side-nav" aria-label="Navegação principal">
-        <a href="home.html" aria-current="page">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="cadastro.html">Novo usuário</a>
+        <a href="home.html" aria-current="page">⌂ &nbsp; Home</a>
+        <a href="dashboard.html">▦ &nbsp; Dashboard</a>
+        <a href="cadastro.html">＋ &nbsp; Novo usuário</a>
+      </nav>
+      <p class="nav-label">Corporativo</p>
+      <nav class="side-nav" aria-label="Recursos corporativos">
+        <a href="#divisoes">▤ &nbsp; Divisões</a>
+        <a href="#boletins">◈ &nbsp; Comunicados</a>
+        <a href="#terminal">⌘ &nbsp; Terminal</a>
       </nav>
       <p class="nav-label">Sistema</p>
       <nav class="side-nav" aria-label="Sistema">
-        <a href="index.html" id="linkLogin">Tela de login</a>
+        <a href="index.html">↪ &nbsp; Tela de login</a>
       </nav>
-      <p class="sidebar-note">AMBIENTE DE DEMONSTRAÇÃO<br>Interface de estudo • Front-end</p>
+      <p class="sidebar-note">NIGHT CITY • REDE INTERNA<br>Build 2.7.04 // Ambiente educacional</p>
     </aside>
     <main class="app-main">
       <header class="app-topbar">
         <div>
-          <p class="breadcrumb">Workspace / Home</p>
-          <h1 class="page-title">Página inicial</h1>
+          <p class="breadcrumb">ARASAKA NET / WORKSPACE / HOME</p>
+          <h1 class="page-title">Central de operações</h1>
         </div>
         <div class="topbar-actions">
-          <span class="status-pill">Sistema local ativo</span>
+          <span class="status-pill">Rede estável</span>
           <div class="user-chip"><span class="user-avatar" id="avatarUsuario">A</span><span id="nomeUsuario">Usuário</span></div>
           <button class="button-secondary" id="botaoSair" type="button">Sair</button>
         </div>
       </header>
       <section class="panel hero-panel">
-        <p class="eyebrow">Arasaka Corporation • Terminal de acesso</p>
-        <h2 id="tituloBoasVindas">Bem-vindo ao ambiente Arasaka.</h2>
-        <p>Seu espaço de trabalho está pronto. Acesse o dashboard para acompanhar os indicadores de demonstração ou explore os atalhos para continuar usando o projeto.</p>
+        <p class="eyebrow">Arasaka Corporation // A excelência é uma ordem</p>
+        <h2 id="tituloBoasVindas">O futuro não espera.</h2>
+        <p>Bem-vindo à rede interna da corporação. Coordene operações, consulte os relatórios de sistema e acompanhe os comunicados do departamento. A eficiência não é opcional.</p>
         <div class="hero-actions">
-          <a class="button-link" href="dashboard.html">Abrir dashboard</a>
-          <a class="button-link button-secondary" href="cadastro.html">Cadastrar usuário</a>
+          <a class="button-link" href="dashboard.html">Acessar dashboard ↗</a>
+          <a class="button-link button-secondary" href="#divisoes">Explorar divisões</a>
+        </div>
+        <div class="hero-meta">
+          <span>LOCALIZAÇÃO <b>NIGHT CITY, NC</b></span>
+          <span>DATA <b id="dataAtual">--</b></span>
+          <span>HORÁRIO LOCAL <b class="digital-clock" id="relogio">--:--:--</b></span>
         </div>
       </section>
       <div class="section-heading">
-        <h2>Visão geral</h2>
-        <p>Resumo deste ambiente local</p>
+        <h2>Estado da rede</h2>
+        <p>Telemetria local de demonstração</p>
       </div>
-      <section class="stats-grid" aria-label="Indicadores">
-        <article class="panel stat-card">
-          <div class="stat-top"><span>Usuários cadastrados</span><span class="stat-icon">U</span></div>
-          <strong class="stat-value" id="totalUsuarios">0</strong>
-          <span class="stat-foot">Registros salvos neste navegador</span>
-        </article>
-        <article class="panel stat-card">
-          <div class="stat-top"><span>Área de trabalho</span><span class="stat-icon">W</span></div>
-          <strong class="stat-value">01</strong>
-          <span class="stat-foot">Ambiente de demonstração</span>
-        </article>
-        <article class="panel stat-card">
-          <div class="stat-top"><span>Estado da interface</span><span class="stat-icon">✓</span></div>
-          <strong class="stat-value">Online</strong>
-          <span class="stat-foot">Páginas estáticas em execução local</span>
-        </article>
+      <section class="stats-grid" aria-label="Indicadores da rede">
+        <article class="panel stat-card"><div class="stat-top"><span>Perfis no diretório</span><span class="stat-icon">ID</span></div><strong class="stat-value" id="totalUsuarios">0</strong><span class="stat-foot">Contas cadastradas neste navegador</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Integridade da rede</span><span class="stat-icon">NX</span></div><strong class="stat-value">99.8%</strong><span class="stat-foot">Indicador visual fictício para o projeto</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Classificação</span><span class="stat-icon">S</span></div><strong class="stat-value">Nível 04</strong><span class="stat-foot">Acesso de demonstração autorizado</span></article>
       </section>
-      <section class="content-grid">
+      <div class="section-heading" id="divisoes">
+        <h2>Divisões corporativas</h2>
+        <p>Selecione um módulo para explorar</p>
+      </div>
+      <div class="filter-row">
+        <span class="section-kicker">CORPORATE DIRECTORY</span>
+        <input type="search" id="filtroModulos" placeholder="Pesquisar divisão..." aria-label="Pesquisar divisões">
+      </div>
+      <section class="module-grid" id="gradeModulos" aria-label="Divisões corporativas">
+        <article class="panel module-card" data-code="SEC" data-search="segurança segurança corporativa defesa"><span class="module-code">DIV. 01 // SEC</span><h3>Segurança Corporativa</h3><p>Protocolos de proteção, controle de acesso e relatórios de incidentes.</p><a href="dashboard.html">Abrir módulo ↗</a></article>
+        <article class="panel module-card" data-code="RND" data-search="pesquisa desenvolvimento laboratório tecnologia"><span class="module-code">DIV. 02 // R&D</span><h3>Pesquisa & Desenvolvimento</h3><p>Pesquisa tecnológica, protótipos e projetos estratégicos da corporação.</p><a href="dashboard.html">Consultar relatórios ↗</a></article>
+        <article class="panel module-card" data-code="OPS" data-search="operações logística operações campo"><span class="module-code">DIV. 03 // OPS</span><h3>Operações</h3><p>Coordenação de recursos, planejamento e acompanhamento de missões.</p><a href="dashboard.html">Ver operações ↗</a></article>
+        <article class="panel module-card" data-code="NET" data-search="rede infraestrutura rede sistemas"><span class="module-code">DIV. 04 // NET</span><h3>Infraestrutura de Rede</h3><p>Estado dos serviços locais, conectividade e integridade dos sistemas.</p><a href="dashboard.html">Ver telemetria ↗</a></article>
+        <article class="panel module-card" data-code="HR" data-search="recursos humanos pessoas equipe usuários"><span class="module-code">DIV. 05 // HR</span><h3>Recursos Humanos</h3><p>Diretório de usuários e gestão dos perfis cadastrados nesta demonstração.</p><a href="cadastro.html">Gerenciar perfis ↗</a></article>
+        <article class="panel module-card" data-code="INT" data-search="inteligência análise dados inteligência"><span class="module-code">DIV. 06 // INT</span><h3>Inteligência Corporativa</h3><p>Indicadores de contexto, relatórios analíticos e visão executiva.</p><a href="dashboard.html">Abrir análise ↗</a></article>
+      </section>
+      <section class="content-grid" id="boletins">
         <article class="panel content-panel">
-          <h2>Atividade recente</h2>
-          <div class="activity-list">
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Sessão iniciada</strong><span>Você entrou no ambiente local da Arasaka.</span></div></div>
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Workspace disponível</strong><span>Home e Dashboard estão prontos para navegação.</span></div></div>
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Armazenamento local</strong><span>Os cadastros desta atividade ficam no navegador atual.</span></div></div>
+          <div class="section-heading" style="margin:0 0 18px"><h2>Comunicados internos</h2><span class="section-kicker">INTERNAL FEED</span></div>
+          <div class="news-list">
+            <article class="news-item"><span class="news-category">DIRETORIA • PRIORIDADE ALTA</span><h3>Eficiência acima de tudo</h3><p>Todos os departamentos devem manter seus relatórios de atividade organizados. A informação correta é uma vantagem estratégica.</p></article>
+            <article class="news-item"><span class="news-category">INFRAESTRUTURA • AVISO</span><h3>Manutenção do terminal concluída</h3><p>A interface interna está disponível para navegação. Os indicadores exibidos neste protótipo são dados ilustrativos.</p></article>
+            <article class="news-item"><span class="news-category">RECURSOS HUMANOS • COMUNICADO</span><h3>Diretório de colaboradores</h3><p>Novos perfis podem ser registrados pelo módulo de cadastro. Os dados permanecem apenas no navegador utilizado.</p></article>
           </div>
         </article>
         <article class="panel content-panel">
-          <h2>Acesso rápido</h2>
+          <div class="section-heading" style="margin:0 0 18px"><h2>Atalhos executivos</h2><span class="section-kicker">QUICK ACCESS</span></div>
           <div class="quick-links">
-            <a class="quick-link" href="dashboard.html"><span><strong>Dashboard</strong><small>Indicadores e resumo do sistema</small></span><span>↗</span></a>
-            <a class="quick-link" href="cadastro.html"><span><strong>Adicionar usuário</strong><small>Preencher um novo cadastro</small></span><span>↗</span></a>
-            <a class="quick-link" href="README.md"><span><strong>Documentação</strong><small>Como o projeto funciona</small></span><span>↗</span></a>
+            <a class="quick-link" href="dashboard.html"><span><strong>Relatório de operações</strong><small>Indicadores e eventos do sistema</small></span><span>↗</span></a>
+            <a class="quick-link" href="cadastro.html"><span><strong>Credenciais de usuário</strong><small>Criar perfil de demonstração</small></span><span>↗</span></a>
+            <a class="quick-link" href="README.md"><span><strong>Manual do terminal</strong><small>Documentação técnica do projeto</small></span><span>↗</span></a>
           </div>
         </article>
       </section>
-      <footer class="app-footer">ARASAKA // Projeto educacional de HTML, CSS e JavaScript</footer>
+      <section class="panel content-panel" id="terminal" style="margin-top:14px">
+        <div class="section-heading" style="margin:0 0 16px"><h2>Terminal interno</h2><span class="section-kicker">LOCAL SHELL // SIMULATED</span></div>
+        <div class="console">
+          <div class="console-head"><span>arasaka-net://internal/terminal</span><span class="console-lights"><i></i><i></i><i></i></span></div>
+          <div class="console-output" id="consoleOutput" role="log" aria-live="polite">ARASAKA NET [build 2.7.04]
+Conexão local estabelecida.
+Digite "help" para listar os comandos disponíveis.</div>
+          <form class="console-form" id="consoleForm">
+            <label for="consoleInput">root@arasaka:~$</label>
+            <input id="consoleInput" type="text" autocomplete="off" spellcheck="false" placeholder="help, status, users..." aria-label="Comando do terminal">
+            <button type="submit">Executar</button>
+          </form>
+          <p class="terminal-note">Terminal fictício para interação front-end. Não executa comandos do sistema operacional.</p>
+        </div>
+      </section>
+      <footer class="app-footer">ARASAKA CORPORATION // YOUR FUTURE IS OUR BUSINESS // PROJETO EDUCACIONAL</footer>
     </main>
   </div>
   <script src="js/home.js" defer></script>
