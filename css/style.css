@@ -273,3 +273,11 @@ select:focus { outline:2px solid rgba(255,98,107,.75); outline-offset:2px; }
 .arms-card button { position:relative; z-index:1; margin-top:16px; }
 #filtroClasse { width:min(100%,300px); }
 @media(max-width:620px) { .admin-form { grid-template-columns:1fr; } .admin-form button { grid-column:auto; } .section-heading { align-items:flex-start; flex-direction:column; } .section-heading .inline-actions { width:100%; } .section-heading .inline-actions button { flex:1; } }
+
+
+/* Ferramentas avançadas da diretoria */
+.role-select { width:auto; min-width:125px; min-height:32px; padding:5px 8px; border-radius:6px; font-size:.74rem; }
+.report-grid { margin:16px 0; }
+.report-grid .panel { width:100%; }
+.report-actions { margin-top:12px; }
+#saidaTerminalAdmin { min-height:145px; }
