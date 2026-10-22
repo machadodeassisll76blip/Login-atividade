@@ -75,10 +75,11 @@ consoleForm.addEventListener("submit", (event) => {
     status: "INTERFACE: ONLINE\nBACKEND: NÃO CONFIGURADO\nARMAZENAMENTO: localStorage\nMODO: DEMONSTRAÇÃO FRONT-END",
     users: `Perfis cadastrados neste navegador: ${lerUsuarios().length}`,
     whoami: `Sessão local ativa para: ${nome || "visitante"}`,
-    divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa",
+    divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa\\nARS // Arasaka Arms",
     date: new Date().toLocaleString("pt-BR"),
     arms: `Itens do catálogo: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaInventario") || "[]").length; } catch { return 0; } })()}. Acesse armas.html para explorar.`,
-    sessions: `Sessões locais registradas: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").length; } catch { return 0; } })()}`
+    sessions: `Sessões locais registradas: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").length; } catch { return 0; } })()}`,
+    audit: (() => { try { return JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]").slice(0, 5).map((l) => `${l.tipo} | ${l.usuario}`).join("\\n") || "Nenhum evento registrado."; } catch { return "Histórico indisponível."; } })()
   };
   imprimirConsole(respostas[comando] || `Comando não reconhecido: ${comando}. Digite "help" para consultar a lista.`);
 });
