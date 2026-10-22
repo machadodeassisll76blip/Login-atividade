@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="Dashboard de demonstração da Arasaka.">
+  <title>Arasaka | Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="sidebar-brand">ARASAKA</p>
+      <p class="nav-label">Workspace</p>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a href="home.html">Home</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="cadastro.html">Novo usuário</a>
+      </nav>
+      <p class="nav-label">Sistema</p>
+      <nav class="side-nav" aria-label="Sistema">
+        <a href="index.html">Tela de login</a>
+      </nav>
+      <p class="sidebar-note">AMBIENTE DE DEMONSTRAÇÃO<br>Indicadores locais, sem servidor.</p>
+    </aside>
+    <main class="app-main">
+      <header class="app-topbar">
+        <div>
+          <p class="breadcrumb">Workspace / Dashboard</p>
+          <h1 class="page-title">Dashboard</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="status-pill">Sistema local ativo</span>
+          <div class="user-chip"><span class="user-avatar" id="avatarUsuario">A</span><span id="nomeUsuario">Usuário</span></div>
+          <button class="button-secondary" id="botaoSair" type="button">Sair</button>
+        </div>
+      </header>
+      <section class="panel hero-panel">
+        <p class="eyebrow">Painel de controle</p>
+        <h2>Visão geral do sistema.</h2>
+        <p>Este dashboard reúne indicadores simples calculados a partir dos dados guardados no navegador. São números demonstrativos, não dados de um servidor real.</p>
+      </section>
+      <div class="section-heading">
+        <h2>Indicadores</h2>
+        <p>Atualizados ao abrir esta página</p>
+      </div>
+      <section class="stats-grid" aria-label="Indicadores do sistema">
+        <article class="panel stat-card"><div class="stat-top"><span>Contas cadastradas</span><span class="stat-icon">U</span></div><strong class="stat-value" id="totalUsuarios">0</strong><span class="stat-foot">Total registrado neste navegador</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Tipo de armazenamento</span><span class="stat-icon">L</span></div><strong class="stat-value">Local</strong><span class="stat-foot">Dados mantidos no localStorage</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Conexão backend</span><span class="stat-icon">!</span></div><strong class="stat-value">Não usada</strong><span class="stat-foot">Projeto front-end sem API ou servidor</span></article>
+      </section>
+      <section class="content-grid">
+        <article class="panel content-panel">
+          <h2>Eventos do ambiente</h2>
+          <div class="activity-list">
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Autenticação de demonstração</strong><span>A sessão é simulada no navegador para fins de aprendizagem.</span></div></div>
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Cadastro local</strong><span>Os usuários cadastrados são lidos do armazenamento local.</span></div></div>
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Interface responsiva</strong><span>O layout se adapta a desktop, tablet e celular.</span></div></div>
+          </div>
+        </article>
+        <article class="panel content-panel">
+          <h2>Ações</h2>
+          <div class="quick-links">
+            <a class="quick-link" href="home.html"><span><strong>Voltar à Home</strong><small>Página inicial do workspace</small></span><span>↗</span></a>
+            <a class="quick-link" href="cadastro.html"><span><strong>Novo usuário</strong><small>Abrir formulário de cadastro</small></span><span>↗</span></a>
+          </div>
+        </article>
+      </section>
+      <footer class="app-footer">ARASAKA // Dashboard demonstrativo</footer>
+    </main>
+  </div>
+  <script src="js/dashboard.js" defer></script>
+</body>
+</html>
