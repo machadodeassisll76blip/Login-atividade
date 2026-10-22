@@ -12,9 +12,11 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background-image: url(img/)
+            background-image: url(img/back.jfif);
+            background-repeat: none;
             min-height: 100vh;
         }
+
         header {
             background: #2563eb;
             color: white;
@@ -114,15 +116,17 @@
         </section>
     </main>
     <script>
-        // Pega o nome que a página de login salvou
+        // 1. Pega o nome que o login guardou
         const nomeLogado = localStorage.getItem("usuarioLogado");
-        // Se existir um nome salvo, troca o texto do título
+
+        // 2. Se tiver um nome, troca o texto do título
         if (nomeLogado) {
             document.getElementById("boasVindas").textContent =
                 "Bem-vindo, " + nomeLogado + "!";
         }
+
+        // 3. Botão Sair: apaga quem estava logado e volta para o login
         function sair() {
-            // Apaga quem estava logado antes de voltar para o login
             localStorage.removeItem("usuarioLogado");
             window.location.href = "login.html";
         }
