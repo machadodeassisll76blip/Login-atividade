@@ -55,6 +55,9 @@ function preencherFormulario() {
 function atualizarPreview() {
   const p = lerFormulario();
   document.documentElement.style.setProperty("--profile-accent", p.cor);
+  document.documentElement.style.setProperty("--red", p.cor);
+  const seletorTema = document.querySelector("#themeColor");
+  if (seletorTema) seletorTema.value = p.cor;
   $("#previewNome").textContent = p.nome;
   $("#previewHandle").textContent = "@" + usuarioAtual;
   $("#previewBio").textContent = p.bio || p.titulo || "Sua biografia aparece aqui.";
@@ -139,6 +142,7 @@ form.addEventListener("submit", (event) => {
   }
   try {
     localStorage.setItem(chavePerfil, JSON.stringify(novo));
+    localStorage.setItem("arasakaThemeColor", novo.cor);
     const usuarios = (() => { try { const x = JSON.parse(localStorage.getItem("usuarios") || "[]"); return Array.isArray(x) ? x : []; } catch { return []; } })();
     localStorage.setItem("usuarios", JSON.stringify(usuarios.map((u) => u.usuario === usuarioAtual ? { ...u, nome: novo.nome } : u)));
     sessao.nome = novo.nome;
