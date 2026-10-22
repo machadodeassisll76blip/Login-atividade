@@ -77,9 +77,9 @@ consoleForm.addEventListener("submit", (event) => {
     whoami: `Sessão local ativa para: ${nome || "visitante"}`,
     divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa\nARS // Arasaka Arms",
     date: new Date().toLocaleString("pt-BR"),
-    arms: `Itens do catálogo: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaInventario") || "[]").length; } catch { return 0; } })()}. Acesse armas.html para explorar.`,
+    arms: `Itens do catálogo: ${(() => { try { const itens = JSON.parse(localStorage.getItem("arasakaInventario") || "null"); return Array.isArray(itens) && itens.length ? itens.length : 4; } catch { return 0; } })()}. Acesse armas.html para explorar.`,
     sessions: `Sessões locais registradas: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").length; } catch { return 0; } })()}`,
-    audit: (() => { try { return JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]").slice(0, 5).map((l) => `${l.tipo} | ${l.usuario}`).join("\\n") || "Nenhum evento registrado."; } catch { return "Histórico indisponível."; } })()
+    audit: (() => { try { return JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]").slice(0, 5).map((l) => `${l.tipo} | ${l.usuario}`).join("\n") || "Nenhum evento registrado."; } catch { return "Histórico indisponível."; } })()
   };
   if (comando.startsWith("open ")) {
     const destino = comando.slice(5).trim();
