@@ -47,3 +47,13 @@ Para uso real, a próxima etapa seria implementar uma API/backend, banco de dado
 ## Objetivo de aprendizagem
 
 Praticar formulários, validação, eventos, manipulação do DOM, filtros, persistência local, autorização de interface, gestão de registros e navegação entre páginas.
+
+
+## Acesso administrativo avançado
+
+- A página `admin-login.html` oferece um fluxo de entrada separado para contas com papel administrativo, sem credenciais padrão embutidas no repositório.
+- O primeiro perfil de gestão continua sendo definido pelo cadastro inicial quando ainda não existe perfil com papel `admin` neste navegador.
+- O painel contém gestão de permissões, relatórios CSV, terminal local de consulta, exportação do diretório e backup JSON sem campos de senha.
+- Comandos do terminal: `help`, `stats`, `users`, `sessions`, `audit`, `backup` e `clear`.
+
+**Limites de segurança:** este é um protótipo estático. Os dados de conta e senhas do modelo atual ficam no `localStorage`, que pode ser lido ou alterado por quem controla o navegador. A página separada e os controles por papel organizam a interface, mas não substituem autenticação e autorização no servidor. Dados não sincronizam entre dispositivos e podem ser apagados. Para produção, use backend/API, hashes fortes de senha, sessões seguras, autorização no servidor e auditoria centralizada.
