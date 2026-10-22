@@ -36,5 +36,5 @@ formLogin.addEventListener("submit", (event) => {
 
   localStorage.setItem("usuarioLogado", encontrado.nome || encontrado.usuario);
   mostrarMensagem("Login realizado. Abrindo o painel...", "success");
-  window.location.href = "painel.html";
+  window.location.href = "home.html";
 });
