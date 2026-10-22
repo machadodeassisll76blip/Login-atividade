@@ -8,6 +8,8 @@ function lerUsuarios() {
 }
 
 const nome = localStorage.getItem("usuarioLogado");
+let sessaoAtual = null;
+try { sessaoAtual = JSON.parse(localStorage.getItem("arasakaSessaoAtual") || "null"); } catch {}
 if (!nome) {
   window.location.replace("index.html");
 } else {
@@ -15,8 +17,12 @@ if (!nome) {
   document.querySelector("#avatarUsuario").textContent = nome.trim().charAt(0).toUpperCase() || "U";
   document.querySelector("#tituloBoasVindas").textContent = `Bem-vindo, ${nome}. O futuro não espera.`;
   document.querySelector("#totalUsuarios").textContent = lerUsuarios().length;
+  const linkGestao = document.querySelector("#linkGestao");
+  if (linkGestao && sessaoAtual && sessaoAtual.papel === "admin") linkGestao.hidden = false;
 }
 
+function lerListaLocal(chave) { try { const v = JSON.parse(localStorage.getItem(chave) || "[]"); return Array.isArray(v) ? v : []; } catch { return []; } }
+function registrarEventoLocal(tipo, detalhes) { const logs = lerListaLocal("arasakaAuditoria"); logs.unshift({ id: Date.now() + Math.random(), tipo, usuario: sessaoAtual?.usuario || nome, detalhes, data: new Date().toISOString() }); localStorage.setItem("arasakaAuditoria", JSON.stringify(logs.slice(0, 250))); }
 function atualizarRelogio() {
   const agora = new Date();
   document.querySelector("#relogio").textContent = agora.toLocaleTimeString("pt-BR", { hour12: false });
@@ -26,7 +32,11 @@ atualizarRelogio();
 window.setInterval(atualizarRelogio, 1000);
 
 document.querySelector("#botaoSair").addEventListener("click", () => {
+  const sessoes = lerListaLocal("arasakaSessoes");
+  localStorage.setItem("arasakaSessoes", JSON.stringify(sessoes.map((s) => s.id === sessaoAtual?.id ? { ...s, estado: "encerrada", fim: new Date().toISOString() } : s)));
+  registrarEventoLocal("LOGOUT", "Sessão local encerrada.");
   localStorage.removeItem("usuarioLogado");
+  localStorage.removeItem("arasakaSessaoAtual");
   window.location.replace("index.html");
 });
 
