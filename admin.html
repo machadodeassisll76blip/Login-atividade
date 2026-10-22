@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="Área restrita de gestão da rede corporativa.">
+  <title>Arasaka | Gestão interna</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="sidebar-brand">ARASAKA<span class="brand-subline">CORPORATION // INTERNAL</span></p>
+      <p class="nav-label">Workspace</p>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a href="home.html">⌂ &nbsp; Home</a>
+        <a href="dashboard.html">▦ &nbsp; Dashboard</a>
+        <a href="cadastro.html">＋ &nbsp; Novo usuário</a>
+        <a href="admin.html" aria-current="page">◈ &nbsp; Gestão interna</a>
+      </nav>
+      <p class="nav-label">Diretoria</p>
+      <nav class="side-nav" aria-label="Áreas de gestão">
+        <a href="#sessoes">◷ &nbsp; Sessões</a>
+        <a href="#pessoas">▤ &nbsp; Diretório</a>
+        <a href="#armamentos">▣ &nbsp; Arasaka Arms</a>
+        <a href="#auditoria">⌘ &nbsp; Auditoria</a>
+      </nav>
+      <p class="sidebar-note">ACESSO RESTRITO<br>Eventos e dados locais deste navegador.</p>
+    </aside>
+    <main class="app-main">
+      <header class="app-topbar">
+        <div><p class="breadcrumb">ARASAKA NET / INTERNAL / MANAGEMENT</p><h1 class="page-title">Gestão corporativa</h1></div>
+        <div class="topbar-actions"><span class="status-pill">Área restrita</span><div class="user-chip"><span class="user-avatar" id="avatarUsuario">A</span><span id="nomeUsuario">Usuário</span></div><button class="button-secondary" id="botaoSair" type="button">Sair</button></div>
+      </header>
+      <section class="panel hero-panel">
+        <p class="eyebrow">Executive access // Internal affairs</p>
+        <h2>Controle operacional da rede.</h2>
+        <p>Consulte sessões registradas, gerencie perfis locais, mantenha o inventário fictício da divisão Arasaka Arms e revise eventos de auditoria. Os dados refletem este navegador, não uma infraestrutura corporativa real.</p>
+        <div class="hero-meta"><span>OPERADOR <b id="operadorAtual">—</b></span><span>DATA <b id="dataAtual">—</b></span><span>SESSÃO <b id="idSessao">—</b></span></div>
+      </section>
+      <section class="stats-grid" aria-label="Resumo de gestão">
+        <article class="panel stat-card"><div class="stat-top"><span>Perfis cadastrados</span><span class="stat-icon">ID</span></div><strong class="stat-value" id="totalPerfis">0</strong><span class="stat-foot">Diretório local</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Sessões registradas</span><span class="stat-icon">SS</span></div><strong class="stat-value" id="totalSessoes">0</strong><span class="stat-foot">Histórico mantido no navegador</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Eventos de auditoria</span><span class="stat-icon">LOG</span></div><strong class="stat-value" id="totalEventos">0</strong><span class="stat-foot">Limite local de 250 registros</span></article>
+      </section>
+      <section class="panel content-panel admin-section" id="sessoes">
+        <div class="section-heading" style="margin-top:0"><h2>Sessões e acessos</h2><button class="button-secondary" id="encerrarOutras">Encerrar outras sessões</button></div>
+        <p class="admin-help">Este histórico é local e pode ser apagado ou alterado pelo navegador. Não representa sessões autenticadas num servidor.</p>
+        <div class="table-wrap"><table><thead><tr><th>Usuário</th><th>Início</th><th>Estado</th><th>ID local</th><th>Ação</th></tr></thead><tbody id="tabelaSessoes"></tbody></table></div>
+      </section>
+      <section class="panel content-panel admin-section" id="pessoas">
+        <div class="section-heading" style="margin-top:0"><h2>Diretório de colaboradores</h2><input id="filtroPerfis" type="search" placeholder="Buscar perfil..." aria-label="Buscar perfil"></div>
+        <div class="table-wrap"><table><thead><tr><th>Nome</th><th>Usuário</th><th>E-mail</th><th>Permissão</th><th>Estado</th><th>Ação</th></tr></thead><tbody id="tabelaPerfis"></tbody></table></div>
+      </section>
+      <section class="panel content-panel admin-section" id="armamentos">
+        <div class="section-heading" style="margin-top:0"><h2>Arasaka Arms // Inventário</h2><span class="section-kicker">DIVISION 07 / DEFENSE SYSTEMS</span></div>
+        <p class="admin-help">Catálogo fictício de produtos e equipamentos do universo do projeto. Os itens abaixo são nomes e categorias de ambientação, sem especificações operacionais reais.</p>
+        <form id="formArma" class="admin-form">
+          <div class="form-group"><label for="nomeItem">Nome do item</label><input id="nomeItem" maxlength="70" placeholder="Ex.: Kestrel Smart Platform" required></div>
+          <div class="form-group"><label for="classeItem">Categoria</label><select id="classeItem" required><option value="Plataforma inteligente">Plataforma inteligente</option><option value="Equipamento de proteção">Equipamento de proteção</option><option value="Sistema não letal">Sistema não letal</option><option value="Robótica de defesa">Robótica de defesa</option><option value="Pesquisa e protótipo">Pesquisa e protótipo</option></select></div>
+          <div class="form-group"><label for="estadoItem">Estado</label><select id="estadoItem" required><option value="Em avaliação">Em avaliação</option><option value="Em desenvolvimento">Em desenvolvimento</option><option value="Aprovado para catálogo">Aprovado para catálogo</option><option value="Retirado de serviço">Retirado de serviço</option></select></div>
+          <div class="form-group"><label for="departamentoItem">Departamento</label><select id="departamentoItem" required><option>Pesquisa & Desenvolvimento</option><option>Segurança Corporativa</option><option>Robótica</option><option>Conformidade</option></select></div>
+          <button type="submit">Adicionar ao inventário</button>
+        </form>
+        <p id="mensagemInventario" class="message" role="status" aria-live="polite"></p>
+        <div class="filter-row"><span class="section-kicker">ASSET REGISTER</span><input id="filtroInventario" type="search" placeholder="Buscar item..." aria-label="Buscar item no inventário"></div>
+        <div class="table-wrap"><table><thead><tr><th>Registro</th><th>Item</th><th>Categoria</th><th>Departamento</th><th>Estado</th><th>Ação</th></tr></thead><tbody id="tabelaInventario"></tbody></table></div>
+      </section>
+      <section class="panel content-panel admin-section" id="auditoria">
+        <div class="section-heading" style="margin-top:0"><h2>Auditoria de eventos</h2><div class="inline-actions"><button class="button-secondary" id="exportarAuditoria">Exportar JSON</button><button class="button-secondary" id="limparAuditoria">Limpar logs</button></div></div>
+        <p class="admin-help">Registra eventos do protótipo, como logins, falhas de acesso, cadastros e alterações no inventário. Senhas não devem ser registradas.</p>
+        <div class="filter-row"><span class="section-kicker">LOCAL EVENT LOG</span><input id="filtroAuditoria" type="search" placeholder="Buscar evento..." aria-label="Buscar evento"></div>
+        <div class="table-wrap"><table><thead><tr><th>Data</th><th>Evento</th><th>Usuário</th><th>Detalhes</th></tr></thead><tbody id="tabelaAuditoria"></tbody></table></div>
+      </section>
+      <footer class="app-footer">ARASAKA CORPORATION // INTERNAL AFFAIRS // PROTÓTIPO FRONT-END</footer>
+    </main>
+  </div>
+  <script src="js/admin.js" defer></script>
+</body>
+</html>
