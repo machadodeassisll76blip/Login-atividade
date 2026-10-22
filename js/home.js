@@ -65,7 +65,9 @@ consoleForm.addEventListener("submit", (event) => {
     users: `Perfis cadastrados neste navegador: ${lerUsuarios().length}`,
     whoami: `Sessão local ativa para: ${nome || "visitante"}`,
     divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa",
-    date: new Date().toLocaleString("pt-BR")
+    date: new Date().toLocaleString("pt-BR"),
+    arms: `Itens do catálogo: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaInventario") || "[]").length; } catch { return 0; } })()}. Acesse armas.html para explorar.`,
+    sessions: `Sessões locais registradas: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").length; } catch { return 0; } })()}`
   };
   imprimirConsole(respostas[comando] || `Comando não reconhecido: ${comando}. Digite "help" para consultar a lista.`);
 });
