@@ -43,21 +43,18 @@ formCadastro.addEventListener("submit", (event) => {
   if (usuarios.some((item) => String(item.usuario).toLowerCase() === usuarioNormalizado)) {
     return falhar(usuario, "Esse nome de usuário já está cadastrado.");
   }
-  const primeiroCadastro = !usuarios.some((item) => item.papel === "admin");
   usuarios.push({
     nome: nome.value.trim(),
     email: email.value.trim(),
     usuario: usuario.value.trim(),
     senha: senha.value,
-    papel: primeiroCadastro ? "admin" : "colaborador",
+    papel: "colaborador",
     criadoEm: new Date().toISOString(),
     ativo: true
   });
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
-  auditar("USUARIO_CRIADO", usuario.value.trim(), primeiroCadastro ? "Perfil inicial com permissões de gestão" : "Novo perfil de colaborador");
+  auditar("USUARIO_CRIADO", usuario.value.trim(), "Novo perfil de colaborador");
   formCadastro.reset();
-  mostrarMensagem(primeiroCadastro
-    ? "Perfil criado. Como primeiro perfil de gestão deste navegador, você recebeu acesso à área interna. Faça login para continuar."
-    : "Cadastro salvo neste navegador. Faça login para acessar a rede corporativa.", "success");
+  mostrarMensagem("Cadastro salvo neste navegador. Faça login para acessar a rede corporativa.", "success");
   window.setTimeout(() => { window.location.href = "index.html"; }, 1600);
 });
