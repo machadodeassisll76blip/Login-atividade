@@ -23,7 +23,7 @@ formLogin.addEventListener("submit", (event) => {
   const usuario = document.querySelector("#usuario").value.trim();
   const senha = document.querySelector("#senha").value;
   const encontrado = lerUsuarios().find((item) =>
-    String(item.usuario || "").toLowerCase() === usuario.toLowerCase() && item.senha === senha && item.ativo !== false
+    String(item.usuario || "").toLowerCase() === usuario.toLowerCase() && item.senha === senha && item.ativo !== false && item.papel !== "admin"
   );
   if (!encontrado) {
     auditar("LOGIN_FALHOU", usuario, "Credenciais inválidas");
