@@ -39,13 +39,18 @@ function iniciarPainel() {
   document.querySelector("#encerrarOutras").addEventListener("click", encerrarOutrasSessoes);
   document.querySelector("#limparAuditoria").addEventListener("click", limparAuditoria);
   document.querySelector("#exportarAuditoria").addEventListener("click", exportarAuditoria);
+  document.querySelector("#atualizarRelatorios").addEventListener("click", atualizarRelatorios);
+  document.querySelector("#exportarRelatorio").addEventListener("click", exportarRelatorio);
+  document.querySelector("#formTerminalAdmin").addEventListener("submit", executarTerminal);
+  document.querySelector("#criarBackup").addEventListener("click", criarBackup);
+  document.querySelector("#exportarUsuarios").addEventListener("click", exportarUsuariosCSV);
   document.querySelector("#botaoSair").addEventListener("click", sair);
 }
 function renderizarTudo() {
   document.querySelector("#totalPerfis").textContent = ler("usuarios").length;
   document.querySelector("#totalSessoes").textContent = ler("arasakaSessoes").length;
   document.querySelector("#totalEventos").textContent = ler("arasakaAuditoria").length;
-  renderizarSessoes(); renderizarPerfis(); renderizarInventario(); renderizarSolicitacoes(); renderizarAuditoria();
+  renderizarSessoes(); renderizarPerfis(); renderizarInventario(); renderizarSolicitacoes(); renderizarAuditoria(); atualizarRelatorios();
 }
 function celula(texto) { return `<td>${escapar(texto)}</td>`; }
 function renderizarSessoes() {
@@ -71,17 +76,25 @@ function renderizarPerfis() {
     ${celula(u.papel === "admin" ? "Diretoria" : "Colaborador")}
     ${celula(u.ativo === false ? "Suspenso" : "Ativo")}
     <td class="inline-actions">
-      ${u.usuario === sessao.usuario ? '<span class="muted-cell">Sessão atual</span>' : `<button class="table-button" data-toggle-user="${escapar(u.usuario)}">${u.ativo === false ? "Reativar" : "Suspender"}</button> <button class="table-button danger-button" data-delete-user="${escapar(u.usuario)}">Remover</button>`}
+      ${u.usuario === sessao.usuario ? '<span class="muted-cell">Sessão atual</span>' : `<button class="table-button" data-toggle-user="${escapar(u.usuario)}">${u.ativo === false ? "Reativar" : "Suspender"}</button> <select class="role-select" aria-label="Permissão de ${escapar(u.usuario)}" data-role-user="${escapar(u.usuario)}"><option value="colaborador" ${u.papel !== "admin" ? "selected" : ""}>Colaborador</option><option value="admin" ${u.papel === "admin" ? "selected" : ""}>Admin</option></select> <button class="table-button danger-button" data-delete-user="${escapar(u.usuario)}">Remover</button>`}
     </td>
   </tr>`).join("") : '<tr><td colspan="6" class="empty-cell">Nenhum perfil corresponde à pesquisa.</td></tr>';
   corpo.querySelectorAll("[data-toggle-user]").forEach((b) => b.addEventListener("click", () => {
     const lista = ler("usuarios").map((u) => u.usuario === b.dataset.toggleUser ? { ...u, ativo:u.ativo === false } : u);
     gravar("usuarios", lista); auditar("ESTADO_PERFIL_ALTERADO", `Estado atualizado para ${b.dataset.toggleUser}`); renderizarTudo();
   }));
+  corpo.querySelectorAll("[data-role-user]").forEach((select) => select.addEventListener("change", () => {
+    const alvo=select.dataset.roleUser, novoPapel=select.value, usuarios=ler("usuarios"); const atual=usuarios.find((u)=>u.usuario===alvo);
+    if(!atual || alvo===sessao.usuario){alert("Não é permitido alterar sua própria permissão.");renderizarPerfis();return;}
+    if(atual.papel==="admin" && novoPapel!=="admin" && usuarios.filter((u)=>u.papel==="admin"&&u.ativo!==false).length<=1){alert("Mantenha pelo menos um administrador ativo.");renderizarPerfis();return;}
+    gravar("usuarios",usuarios.map((u)=>u.usuario===alvo?{...u,papel:novoPapel}:u));auditar("PERMISSAO_ALTERADA","Permissão de "+alvo+" alterada para "+novoPapel);renderizarTudo();
+  }));
   corpo.querySelectorAll("[data-delete-user]").forEach((b) => b.addEventListener("click", () => {
     const alvo = b.dataset.deleteUser;
     if (!confirm(`Remover o perfil local "${alvo}"? Esta ação não pode ser desfeita.`)) return;
-    gravar("usuarios", ler("usuarios").filter((u) => u.usuario !== alvo));
+    const listaUsuarios=ler("usuarios"), usuarioAlvo=listaUsuarios.find((u)=>u.usuario===alvo);
+    if(usuarioAlvo?.papel==="admin" && listaUsuarios.filter((u)=>u.papel==="admin"&&u.ativo!==false).length<=1){alert("Não é possível remover o último administrador ativo.");return;}
+    gravar("usuarios", listaUsuarios.filter((u) => u.usuario !== alvo));
     gravar("arasakaSessoes", ler("arasakaSessoes").map((s) => s.usuario === alvo && s.estado === "ativa" ? { ...s, estado:"encerrada", fim:new Date().toISOString() } : s));
     auditar("PERFIL_REMOVIDO", `Perfil removido: ${alvo}`); renderizarTudo();
   }));
@@ -157,3 +170,9 @@ function sair() {
   localStorage.removeItem("usuarioLogado"); localStorage.removeItem("arasakaSessaoAtual");
   window.location.replace("index.html");
 }
+function baixarArquivo(nome, conteudo, tipo="application/json"){const blob=new Blob([conteudo],{type:tipo});const url=URL.createObjectURL(blob);const link=document.createElement("a");link.href=url;link.download=nome;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function atualizarRelatorios(){const us=ler("usuarios"),p=ler("arasakaSolicitacoes"),i=ler("arasakaInventario");document.querySelector("#relContasAtivas").textContent=us.filter(u=>u.ativo!==false).length;document.querySelector("#relSolicitacoes").textContent=p.filter(x=>x.estado!=="Concluída").length;document.querySelector("#relInventario").textContent=i.length;}
+function exportarRelatorio(){const rows=[["Indicador","Valor"],["Perfis cadastrados",ler("usuarios").length],["Contas ativas",ler("usuarios").filter(u=>u.ativo!==false).length],["Sessões registradas",ler("arasakaSessoes").length],["Eventos de auditoria",ler("arasakaAuditoria").length],["Solicitações pendentes",ler("arasakaSolicitacoes").filter(p=>p.estado!=="Concluída").length],["Itens no inventário",ler("arasakaInventario").length]];baixarArquivo("arasaka-relatorio.csv","\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(";")).join("\n"),"text/csv;charset=utf-8");auditar("RELATORIO_EXPORTADO","Relatório executivo CSV exportado.");renderizarTudo();}
+function criarBackup(){const usuarios=ler("usuarios").map(({senha,...u})=>u);const dados={produto:"Arasaka Corporation // protótipo local",geradoEm:new Date().toISOString(),aviso:"Senhas excluídas do backup.",dados:{usuarios,sessoes:ler("arasakaSessoes"),auditoria:ler("arasakaAuditoria"),inventario:ler("arasakaInventario"),solicitacoes:ler("arasakaSolicitacoes")}};baixarArquivo("arasaka-backup-seguro.json",JSON.stringify(dados,null,2));auditar("BACKUP_EXPORTADO","Backup JSON sem senhas exportado.");const m=document.querySelector("#mensagemBackup");m.textContent="Backup criado. Senhas não foram incluídas.";m.dataset.type="success";renderizarTudo();}
+function exportarUsuariosCSV(){const us=ler("usuarios"),rows=[["Nome","Usuário","E-mail","Permissão","Estado","Criado em"],...us.map(u=>[u.nome,u.usuario,u.email,u.papel,u.ativo===false?"Suspenso":"Ativo",u.criadoEm])];baixarArquivo("arasaka-diretorio.csv","\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\n"),"text/csv;charset=utf-8");auditar("DIRETORIO_EXPORTADO","Diretório CSV exportado.");renderizarTudo();}
+function executarTerminal(e){e.preventDefault();const input=document.querySelector("#comandoAdmin"),out=document.querySelector("#saidaTerminalAdmin"),cmd=input.value.trim(),parts=cmd.split(/\s+/),act=(parts.shift()||"").toLowerCase();input.value="";let r="";switch(act){case"help":r="help | stats | users | sessions | audit | backup | clear";break;case"stats":r="Perfis: "+ler("usuarios").length+"\nContas ativas: "+ler("usuarios").filter(u=>u.ativo!==false).length+"\nSessões: "+ler("arasakaSessoes").length+"\nEventos: "+ler("arasakaAuditoria").length+"\nInventário: "+ler("arasakaInventario").length+"\nSolicitações pendentes: "+ler("arasakaSolicitacoes").filter(p=>p.estado!=="Concluída").length;break;case"users":r=ler("usuarios").map(u=>u.usuario+" | "+(u.papel||"colaborador")+" | "+(u.ativo===false?"suspenso":"ativo")).join("\n")||"Nenhum usuário.";break;case"sessions":r=ler("arasakaSessoes").slice(0,15).map(s=>s.usuario+" | "+s.estado+" | "+dataLocal(s.inicio)).join("\n")||"Nenhuma sessão.";break;case"audit":r=ler("arasakaAuditoria").slice(0,15).map(l=>dataLocal(l.data)+" | "+l.tipo+" | "+l.usuario).join("\n")||"Nenhum evento.";break;case"backup":criarBackup();r="Backup JSON solicitado.";break;case"clear":out.textContent="Terminal limpo.";return;case"":r="Digite help para consultar os comandos.";break;default:r="Comando desconhecido. Digite help.";}out.textContent+="\n\nadmin> "+cmd+"\n"+r;out.scrollTop=out.scrollHeight;auditar("COMANDO_ADMIN","Comando local executado: "+act);}
