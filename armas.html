@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#070707"><meta name="description" content="Catálogo de tecnologias e equipamentos fictícios da Arasaka Arms."><title>Arasaka | Arms Division</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <p class="sidebar-brand">ARASAKA<span class="brand-subline">CORPORATION // ARMS</span></p>
+    <p class="nav-label">Workspace</p>
+    <nav class="side-nav" aria-label="Navegação principal"><a href="home.html">⌂ &nbsp; Home</a><a href="dashboard.html">▦ &nbsp; Dashboard</a><a href="armas.html" aria-current="page">▣ &nbsp; Arasaka Arms</a><a href="cadastro.html">＋ &nbsp; Novo usuário</a><a href="admin.html" id="linkGestao" hidden>◈ &nbsp; Gestão interna</a></nav>
+    <p class="nav-label">Catálogo</p><nav class="side-nav"><a href="#catalogo">▤ &nbsp; Equipamentos</a><a href="#solicitacoes">◈ &nbsp; Solicitações</a></nav>
+    <p class="sidebar-note">DIVISION 07 // DEFENSE SYSTEMS<br>Catálogo conceitual de ficção.</p>
+  </aside>
+  <main class="app-main">
+    <header class="app-topbar"><div><p class="breadcrumb">ARASAKA NET / DIVISION 07 / CATALOG</p><h1 class="page-title">Arasaka Arms</h1></div><div class="topbar-actions"><span class="status-pill">Catálogo local</span><div class="user-chip"><span class="user-avatar" id="avatarUsuario">U</span><span id="nomeUsuario">Usuário</span></div><button class="button-secondary" id="botaoSair" type="button">Sair</button></div></header>
+    <section class="panel hero-panel"><p class="eyebrow">Division 07 // Defense systems</p><h2>Tecnologia a serviço do poder.</h2><p>Explore o portfólio conceitual da divisão de defesa da Arasaka. Os produtos, categorias e estados são conteúdo ficcional criado para este projeto de interface, não especificações de armamentos reais.</p><div class="hero-meta"><span>DIVISÃO <b>ARASAKA ARMS</b></span><span>ITENS NO CATÁLOGO <b id="totalItens">0</b></span><span>ATUALIZAÇÃO <b id="dataCatalogo">—</b></span></div></section>
+    <section id="catalogo"><div class="section-heading"><h2>Portfólio de produtos</h2><p>Pesquise e filtre os registros</p></div>
+      <div class="filter-row"><input id="buscaItem" type="search" placeholder="Pesquisar produto ou departamento..." aria-label="Pesquisar produtos"><select id="filtroClasse" aria-label="Filtrar por categoria"><option value="">Todas as categorias</option><option>Plataforma inteligente</option><option>Equipamento de proteção</option><option>Sistema não letal</option><option>Robótica de defesa</option><option>Pesquisa e protótipo</option></select></div>
+      <section class="module-grid" id="gradeCatalogo" aria-live="polite"></section>
+      <p class="message" id="mensagemCatalogo" role="status" aria-live="polite"></p>
+    </section>
+    <section class="panel content-panel" id="solicitacoes" style="margin-top:22px"><div class="section-heading" style="margin-top:0"><h2>Solicitações de informação</h2><span class="section-kicker">CLIENT RELATIONS</span></div><p class="admin-help">Use “Solicitar ficha” em um item para registrar interesse neste navegador. Isso cria um registro local de demonstração, sem envio a uma empresa ou serviço externo.</p><div id="listaSolicitacoes" class="activity-list"></div></section>
+    <footer class="app-footer">ARASAKA ARMS // CONFIDENTIAL PRODUCT DIRECTORY // FICÇÃO INTERATIVA</footer>
+  </main>
+</div><script src="js/armas.js" defer></script></body></html>
