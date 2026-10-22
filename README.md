@@ -1,39 +1,36 @@
 # Arasaka Corporation | Internal Net
 
-Projeto de estudo de front-end inspirado na estética corporativa cyberpunk da Arasaka, com tela de login, Home temática, dashboard interativo e cadastro local.
+Projeto educacional de front-end inspirado numa intranet corporativa cyberpunk. Inclui autenticação demonstrativa, áreas internas, catálogo de produtos ficcionais, gestão local de perfis e auditoria de eventos.
 
-## O que o site oferece
+## Recursos
 
-- **Login como página inicial**, com conta de demonstração.
-- **Home corporativa temática:** divisões, comunicados internos, atalhos, relógio em tempo real e busca de módulos.
-- **Terminal simulado:** comandos `help`, `status`, `users`, `whoami`, `divisions`, `date` e `clear`. O terminal não executa comandos reais no computador.
-- **Dashboard:** indicadores locais, relógio, monitoramento visual demonstrativo, registro de eventos e diretório pesquisável de usuários.
-- **Cadastro:** validação de campos e confirmação de senha.
-- **Interface responsiva:** navegação lateral, cartões, detalhes vermelhos, fundo escuro e animações discretas.
-- **Sessão de demonstração:** navegação para Home após o login e botão de saída.
+- **Acesso corporativo:** cadastro, validação de formulário e entrada por usuário e senha.
+- **Home:** divisões corporativas, comunicados, relógio, busca de módulos e terminal interativo.
+- **Terminal:** comandos `help`, `status`, `users`, `whoami`, `divisions`, `arms`, `sessions`, `audit`, `date`, `open` e `clear`.
+- **Dashboard:** diretório pesquisável, indicadores e eventos locais.
+- **Arasaka Arms:** catálogo pesquisável, filtro por categoria e solicitações de informação.
+- **Gestão interna:** registros locais de sessões, pesquisa de perfis, suspensão e remoção de contas, inventário da divisão Arasaka Arms e auditoria exportável em JSON.
+- **Inventário:** adicionar e remover itens do catálogo ficcional.
+- **Interface responsiva:** tema escuro, acentos vermelhos, tabelas com rolagem horizontal e layouts para celular.
 
 ## Tecnologias
 
-- HTML5
-- CSS3
-- JavaScript puro (sem frameworks)
-- `localStorage` para guardar cadastros e sessão no navegador
+- HTML5 e CSS3
+- JavaScript puro
+- `localStorage` para persistência local no navegador
 
-## Executar
+## Executar localmente
 
-1. Clone o projeto:
+1. Clone o repositório:
    ```bash
    git clone https://github.com/machadodeassisll76blip/Login-atividade.git
    ```
 2. Abra a pasta no VS Code.
-3. Execute `index.html` com Live Server ou abra-o diretamente no navegador.
+3. Execute `index.html` com Live Server.
 
-## Conta de demonstração
+## Primeiro acesso
 
-- Usuário: `admin`
-- Senha: `1234`
-
-Também é possível cadastrar um usuário na página **Novo usuário**.
+Crie uma conta pela opção **Criar cadastro**. O primeiro perfil registrado neste navegador recebe permissões de gestão inicial; os perfis seguintes são cadastrados como colaboradores. Não há credenciais universais publicadas no projeto.
 
 ## Estrutura
 
@@ -43,7 +40,8 @@ Login-atividade/
 ├── login.html
 ├── home.html
 ├── dashboard.html
-├── painel.html
+├── armas.html
+├── admin.html
 ├── cadastro.html
 ├── css/
 │   └── style.css
@@ -52,18 +50,21 @@ Login-atividade/
 │   ├── cadastro.js
 │   ├── home.js
 │   ├── dashboard.js
-│   └── painel.js
+│   ├── armas.js
+│   └── admin.js
 └── img/
     ├── arasaka.svg
     └── back.jfif
 ```
 
-## Importante sobre segurança
+## Limitações e segurança
 
-Este é um protótipo de front-end, não um sistema de autenticação para produção. Os cadastros são guardados no `localStorage` e as senhas não são protegidas por hash. A sessão pode ser manipulada pelo próprio navegador. Não use credenciais ou informações reais. Um sistema real precisa de backend, hash seguro de senhas e gerenciamento de sessão no servidor.
+Este projeto é um protótipo de front-end. Usuários, senhas, sessões, inventário e auditoria são armazenados no `localStorage` do navegador e podem ser visualizados ou alterados por quem controla esse navegador. A senha não é protegida por hash, e o controle de permissões não substitui autorização num servidor.
 
-Os medidores de infraestrutura, comunicados e eventos corporativos são elementos ficcionais da interface; não representam telemetria ou notícias reais da Arasaka.
+Os registros de sessão são históricos locais de demonstração, não sessões de servidor sincronizadas entre dispositivos. O catálogo Arasaka Arms, os comunicados e os indicadores corporativos são conteúdo ficcional. Não existe integração com sistemas, produtos ou infraestrutura reais da Arasaka.
+
+Para uso real, a próxima etapa seria implementar uma API/backend, banco de dados, hash de senhas, autorização no servidor, sessões seguras e logs centralizados.
 
 ## Objetivo de aprendizagem
 
-Praticar HTML semântico, CSS responsivo, manipulação do DOM, eventos, filtragem de conteúdo, formulários, armazenamento local e navegação entre páginas.
+Praticar formulários, validação, eventos, manipulação do DOM, filtros, persistência local, autorização de interface, gestão de registros e navegação entre páginas.
