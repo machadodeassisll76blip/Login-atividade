@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="Personalize seu perfil na rede interna Arasaka.">
+  <title>Arasaka | Meu perfil</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="sidebar-brand">ARASAKA<span class="brand-subline">CORPORATION // IDENTITY</span></p>
+      <p class="nav-label">Workspace</p>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a href="home.html">⌂ &nbsp; Home</a>
+        <a href="dashboard.html">▦ &nbsp; Dashboard</a>
+        <a href="armas.html">▣ &nbsp; Arasaka Arms</a>
+        <a href="perfil.html" aria-current="page">◉ &nbsp; Meu perfil</a>
+        <a href="admin.html" id="linkGestao" hidden>◈ &nbsp; Gestão interna</a>
+      </nav>
+      <p class="nav-label">Identidade</p>
+      <nav class="side-nav"><a href="#aparencia">▧ &nbsp; Aparência</a><a href="#informacoes">▤ &nbsp; Informações</a><a href="#preferencias">⚙ &nbsp; Preferências</a></nav>
+      <p class="sidebar-note">IDENTITY MODULE<br>Perfil local deste navegador</p>
+    </aside>
+    <main class="app-main">
+      <header class="app-topbar">
+        <div><p class="breadcrumb">ARASAKA NET / IDENTITY / PROFILE</p><h1 class="page-title">Meu perfil</h1></div>
+        <div class="topbar-actions"><span class="status-pill">Perfil editável</span><div class="user-chip"><span class="user-avatar" id="avatarUsuario">U</span><span id="nomeUsuario">Usuário</span></div><button class="button-secondary" id="botaoSair" type="button">Sair</button></div>
+      </header>
+      <section class="profile-cover panel" id="previewBanner">
+        <div class="profile-cover-shade"></div>
+        <span class="profile-cover-label">PERSONAL IDENTITY // ARASAKA NET</span>
+      </section>
+      <section class="profile-overview panel">
+        <div class="profile-avatar-wrap"><div class="profile-avatar" id="previewAvatar" aria-label="Foto de perfil">U</div></div>
+        <div class="profile-overview-text"><p class="eyebrow" id="previewHandle">@usuario</p><h2 id="previewNome">Seu nome</h2><p id="previewBio" class="profile-preview-bio">Sua biografia aparece aqui.</p><div class="profile-meta"><span id="previewLocal">Localização não informada</span><span id="previewSite">Site não informado</span></div></div>
+        <span class="profile-badge">LOCAL PROFILE</span>
+      </section>
+      <div class="profile-layout">
+        <form class="panel content-panel profile-form" id="formPerfil">
+          <section id="aparencia" class="profile-form-section">
+            <div class="section-heading"><h2>Aparência</h2><span class="section-kicker">VISUAL IDENTITY</span></div>
+            <p class="admin-help">Personalize seu banner, sua foto e a cor de destaque. Imagens são guardadas apenas neste navegador.</p>
+            <div class="form-group"><label for="fotoPerfil">Foto de perfil</label><input id="fotoPerfil" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><small class="profile-hint">PNG, JPG, WEBP ou GIF. Máximo de 1 MB.</small><button class="button-secondary profile-remove-image" type="button" id="removerFoto">Remover foto</button></div>
+            <div class="form-group"><label for="bannerPerfil">Banner de capa</label><input id="bannerPerfil" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><small class="profile-hint">Uma imagem horizontal funciona melhor. Máximo de 1 MB.</small><button class="button-secondary profile-remove-image" type="button" id="removerBanner">Remover banner</button></div>
+            <div class="form-group"><label for="corPerfil">Cor de destaque</label><div class="profile-color-row"><input id="corPerfil" type="color" value="#ed101b"><span>Personaliza pequenos detalhes do seu perfil.</span></div></div>
+          </section>
+          <section id="informacoes" class="profile-form-section">
+            <div class="section-heading"><h2>Informações pessoais</h2><span class="section-kicker">PUBLIC PROFILE</span></div>
+            <div class="form-group"><label for="nomePerfil">Nome de exibição</label><input id="nomePerfil" maxlength="60" required placeholder="Como quer ser chamado?"></div>
+            <div class="form-group"><label for="tituloPerfil">Título ou função</label><input id="tituloPerfil" maxlength="70" placeholder="Ex.: Front-end Developer em formação"></div>
+            <div class="form-group"><label for="bioPerfil">Biografia</label><textarea id="bioPerfil" rows="4" maxlength="280" placeholder="Conte um pouco sobre você, seus interesses e projetos."></textarea><small class="profile-hint"><span id="contadorBio">0</span>/280 caracteres</small></div>
+            <div class="profile-form-grid">
+              <div class="form-group"><label for="localPerfil">Localização</label><input id="localPerfil" maxlength="80" placeholder="Cidade, país"></div>
+              <div class="form-group"><label for="sitePerfil">Site / portfólio</label><input id="sitePerfil" maxlength="180" type="url" placeholder="https://seusite.dev"></div>
+              <div class="form-group"><label for="githubPerfil">GitHub</label><input id="githubPerfil" maxlength="180" type="url" placeholder="https://github.com/usuario"></div>
+              <div class="form-group"><label for="redePerfil">Outra rede</label><input id="redePerfil" maxlength="180" type="url" placeholder="https://..."></div>
+            </div>
+          </section>
+          <section id="preferencias" class="profile-form-section">
+            <div class="section-heading"><h2>Preferências</h2><span class="section-kicker">PROFILE SETTINGS</span></div>
+            <div class="form-group"><label for="statusPerfil">Status</label><select id="statusPerfil"><option value="Disponível">Disponível</option><option value="Focando em projetos">Focando em projetos</option><option value="Ocupado">Ocupado</option><option value="Ausente">Ausente</option></select></div>
+            <div class="form-group"><label for="pronomePerfil">Pronomes (opcional)</label><input id="pronomePerfil" maxlength="40" placeholder="Ex.: ele/dele"></div>
+          </section>
+          <div class="profile-actions"><button type="submit">Salvar perfil</button><button type="button" class="button-secondary" id="restaurarPerfil">Descartar alterações</button></div>
+          <p class="message" id="mensagemPerfil" role="status" aria-live="polite"></p>
+        </form>
+        <aside class="profile-side-column">
+          <article class="panel content-panel profile-card"><p class="eyebrow">PROFILE COMPLETION</p><h3 id="completudeNumero">0% completo</h3><div class="profile-progress"><span id="completudeBarra"></span></div><p class="profile-hint">Preencha as informações para montar um perfil mais completo.</p><div id="checklistPerfil" class="profile-checklist"></div></article>
+          <article class="panel content-panel profile-card"><p class="eyebrow">IDENTITY CARD</p><h3 id="cardNome">Seu nome</h3><p id="cardTitulo" class="profile-card-title">Função não definida</p><div class="profile-card-line"><span>USUÁRIO</span><strong id="cardUsuario">@usuario</strong></div><div class="profile-card-line"><span>STATUS</span><strong id="cardStatus">Disponível</strong></div><div class="profile-card-line"><span>PRONOMES</span><strong id="cardPronomes">Não informado</strong></div><a class="profile-link" id="linkPortfolio" href="#" hidden target="_blank" rel="noopener noreferrer">Abrir portfólio ↗</a></article>
+          <article class="panel content-panel profile-card"><p class="eyebrow">LOCAL STORAGE</p><h3>Seus dados, neste navegador</h3><p class="profile-hint">Seu perfil não é enviado a um servidor nem aparece automaticamente para outros usuários ou dispositivos. Evite colocar dados sensíveis.</p></article>
+        </aside>
+      </div>
+      <footer class="app-footer">ARASAKA CORPORATION // IDENTITY MANAGEMENT // PROTÓTIPO FRONT-END</footer>
+    </main>
+  </div>
+  <script src="js/perfil.js" defer></script>
+</body>
+</html>
