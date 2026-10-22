@@ -1,335 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Tech System</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            color: #f8fafc;
-            background:
-                linear-gradient(135deg, rgba(8, 12, 24, 0.78), rgba(15, 23, 42, 0.55)),
-                url("img/arasaka.svg") center / cover fixed no-repeat;
-            background-color: #0f172a;
-        }
-
-        main {
-            width: 100%;
-            max-width: 400px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            background: rgba(15, 23, 42, 0.86);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(14px);
-        }
-
-        h1 {
-            margin-bottom: 10px;
-            color: #60a5fa;
-            text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 30px;
-            color: #e2e8f0;
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #e2e8f0;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            border: 1px solid #475569;
-            border-radius: 6px;
-            background: rgba(15, 23, 42, 0.75);
-            color: #f8fafc;
-            font-size: 16px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input::placeholder {
-            color: #94a3b8;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #60a5fa;
-            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.18);
-        }
-
-        input.erro {
-            border-color: #dc2626;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
-        }
-
-        #mensagem {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .links {
-            margin-top: 20px;
-            color: #cbd5e1;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        .links a {
-            color: #93c5fd;
-            text-decoration: none;
-        }
-
-        .links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 420px) {
-            main {
-                padding: 26px 22px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="Crie uma conta de demonstração no sistema Arasaka.">
+  <title>Arasaka | Criar conta</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-    <main>
-        <h1>Tech System</h1>
-        <h2>Criar Conta</h2>
-
-        <form id="formCadastro">
-
-            <label for="nome">Nome completo:</label>
-            <input
-                type="text"
-                id="nome"
-                placeholder="Digite seu nome"
-                required
-            >
-
-            <label for="email">E-mail:</label>
-            <input
-                type="email"
-                id="email"
-                placeholder="Digite seu e-mail"
-                required
-            >
-
-            <label for="usuario">Usuário:</label>
-            <input
-                type="text"
-                id="usuario"
-                placeholder="Escolha um nome de usuário"
-                required
-            >
-
-            <label for="senha">Senha:</label>
-            <input
-                type="password"
-                id="senha"
-                placeholder="Mínimo de 6 caracteres"
-                required
-            >
-
-            <label for="confirmarSenha">Confirmar senha:</label>
-            <input
-                type="password"
-                id="confirmarSenha"
-                placeholder="Digite a senha novamente"
-                required
-            >
-
-            <button type="submit">Cadastrar</button>
-
-        </form>
-
-        <p id="mensagem"></p>
-
-        <div class="links">
-            <p>
-                Já possui uma conta?
-                <a href="login.html">Entrar</a>
-            </p>
-        </div>
-    </main>
-
-    <script>
-        const formCadastro = document.getElementById("formCadastro");
-        const mensagem = document.getElementById("mensagem");
-
-        // Mostra uma mensagem na tela com a cor escolhida
-        function mostrarMensagem(texto, cor) {
-            mensagem.textContent = texto;
-            mensagem.style.color = cor;
-        }
-
-        // Marca o campo com borda vermelha e coloca o cursor nele
-        function marcarErro(campo, texto) {
-            campo.classList.add("erro");
-            campo.focus();
-            mostrarMensagem(texto, "red");
-        }
-
-        formCadastro.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const nome = document.getElementById("nome");
-            const email = document.getElementById("email");
-            const usuario = document.getElementById("usuario");
-            const senha = document.getElementById("senha");
-            const confirmarSenha = document.getElementById("confirmarSenha");
-
-            // Limpa os erros da tentativa anterior
-            const campos = [nome, email, usuario, senha, confirmarSenha];
-            campos.forEach(function(campo) {
-                campo.classList.remove("erro");
-            });
-
-            // Validação 1: nome com pelo menos 3 letras
-            if (nome.value.trim().length < 3) {
-                marcarErro(nome, "O nome deve ter pelo menos 3 caracteres.");
-                return;
-            }
-
-            // Validação 2: e-mail precisa ter @ e ponto
-            if (!email.value.includes("@") || !email.value.includes(".")) {
-                marcarErro(email, "Digite um e-mail válido.");
-                return;
-            }
-
-            // Validação 3: usuário sem espaços
-            if (usuario.value.includes(" ")) {
-                marcarErro(usuario, "O usuário não pode ter espaços.");
-                return;
-            }
-
-            // Validação 4: senha com pelo menos 6 caracteres
-            if (senha.value.length < 6) {
-                marcarErro(senha, "A senha deve ter pelo menos 6 caracteres.");
-                return;
-            }
-
-            // Validação 5: as duas senhas precisam ser iguais
-            if (senha.value !== confirmarSenha.value) {
-                marcarErro(confirmarSenha, "As senhas não são iguais.");
-                return;
-            }
-
-            // ===== SALVANDO O CADASTRO NO NAVEGADOR =====
-
-            // 1. Busca a lista de usuários já salvos no localStorage.
-            //    O localStorage só guarda TEXTO, então usamos JSON.parse
-            //    para transformar o texto de volta em uma lista (array).
-            //    Se ainda não existir nada salvo, começamos com uma lista vazia [].
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-            // 2. Verifica se o nome de usuário já foi cadastrado antes
-            for (let i = 0; i < usuarios.length; i++) {
-                if (usuarios[i].usuario === usuario.value) {
-                    marcarErro(usuario, "Esse usuário já existe. Escolha outro.");
-                    return;
-                }
-            }
-
-            // 3. Cria um objeto com os dados da nova pessoa
-            const novoUsuario = {
-                nome: nome.value.trim(),
-                email: email.value,
-                usuario: usuario.value,
-                senha: senha.value
-            };
-
-            // 4. Adiciona o novo usuário no final da lista
-            usuarios.push(novoUsuario);
-
-            // 5. Salva a lista atualizada no localStorage.
-            //    JSON.stringify transforma a lista em texto para poder salvar.
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-            // Passou em todas as validações e foi salvo!
-            mostrarMensagem(
-                "Cadastro realizado, " + nome.value.trim() + "! Redirecionando para o login...",
-                "green"
-            );
-
-            setTimeout(function() {
-                window.location.href = "login.html";
-            }, 1500);
-        });
-
-        // ===== SALVANDO O CADASTRO NO NAVEGADOR =====
-
-            // 1. Pega a lista de usuários salvos.
-            //    Se não tiver nenhum ainda, começa com uma lista vazia [].
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-            // 2. Não deixa cadastrar o mesmo usuário duas vezes
-            for (let i = 0; i < usuarios.length; i++) {
-                if (usuarios[i].usuario === usuario.value) {
-                    marcarErro(usuario, "Esse usuário já existe. Escolha outro.");
-                    return;
-                }
-            }
-
-            // 3. Junta os dados da pessoa em um objeto
-            const novoUsuario = {
-                nome: nome.value.trim(),
-                email: email.value,
-                usuario: usuario.value,
-                senha: senha.value
-            };
-
-            // 4. Coloca a pessoa nova no final da lista
-            usuarios.push(novoUsuario);
-
-            // 5. Salva a lista no navegador (transformada em texto)
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-            // 6. Mostra a mensagem e vai para o login
-            mostrarMensagem("Cadastro realizado, " + nome.value.trim() + "!", "green");
-
-            setTimeout(function() {
-                window.location.href = "login.html";
-            }, 1500);
-
-    </script>
-
+  <main class="auth-card">
+    <p class="brand">Arasaka</p>
+    <p class="subtitle">Crie seu acesso ao sistema</p>
+    <form id="formCadastro" novalidate>
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" autocomplete="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="nome@exemplo.com" autocomplete="email" required>
+      </div>
+      <div class="form-group">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Escolha um usuário" autocomplete="username" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" minlength="6" required>
+      </div>
+      <div class="form-group">
+        <label for="confirmarSenha">Confirmar senha</label>
+        <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Digite a senha novamente" autocomplete="new-password" required>
+      </div>
+      <button type="submit">Criar conta</button>
+    </form>
+    <p id="mensagem" class="message" role="status" aria-live="polite"></p>
+    <div class="form-links"><p>Já possui uma conta? <a href="index.html">Voltar ao login</a></p></div>
+  </main>
+  <script src="js/cadastro.js" defer></script>
 </body>
 </html>
