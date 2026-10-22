@@ -1,6 +1,45 @@
-const formAdminLogin=document.querySelector("#formAdminLogin"),msgAdmin=document.querySelector("#mensagemAdminLogin");
-function usuariosAdmin(){try{const x=JSON.parse(localStorage.getItem("usuarios")||"[]");return Array.isArray(x)?x:[]}catch{return[]}}
-function eventoAdmin(tipo,usuario,detalhes){try{const l=JSON.parse(localStorage.getItem("arasakaAuditoria")||"[]");l.unshift({id:Date.now()+Math.random(),tipo,usuario:usuario||"desconhecido",detalhes,data:new Date().toISOString()});localStorage.setItem("arasakaAuditoria",JSON.stringify(l.slice(0,250)))}catch{}}
-formAdminLogin.addEventListener("submit",e=>{e.preventDefault();const usuario=document.querySelector("#usuarioAdmin").value.trim(),senha=document.querySelector("#senhaAdmin").value,u=usuariosAdmin().find(x=>String(x.usuario||"").toLowerCase()===usuario.toLowerCase()&&x.senha===senha&&x.papel==="admin"&&x.ativo!==false);
-if(!u){eventoAdmin("LOGIN_ADMIN_FALHOU",usuario,"Credenciais administrativas inválidas");msgAdmin.textContent="Acesso negado. Verifique as credenciais e a permissão da conta.";msgAdmin.dataset.type="error";return}
-const s={id:String(Date.now())+Math.random().toString(16).slice(2),usuario:u.usuario,nome:u.nome,papel:"admin",inicio:new Date().toISOString()};localStorage.setItem("usuarioLogado",u.nome||u.usuario);localStorage.setItem("arasakaSessaoAtual",JSON.stringify(s));let ss=[];try{ss=JSON.parse(localStorage.getItem("arasakaSessoes")||"[]");if(!Array.isArray(ss))ss=[]}catch{}ss.unshift({...s,estado:"ativa"});localStorage.setItem("arasakaSessoes",JSON.stringify(ss.slice(0,100)));eventoAdmin("LOGIN_ADMIN_SUCESSO",u.usuario,"Sessão administrativa local iniciada");msgAdmin.textContent="Acesso autorizado. Abrindo painel...";msgAdmin.dataset.type="success";setTimeout(()=>location.href="admin.html",350)});
+const formAdminLogin = document.querySelector("#formAdminLogin");
+const msgAdmin = document.querySelector("#mensagemAdminLogin");
+
+function eventoAdmin(tipo, usuario, detalhes) {
+  try {
+    const logs = JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]");
+    logs.unshift({ id: Date.now() + Math.random(), tipo, usuario: usuario || "desconhecido", detalhes, data: new Date().toISOString() });
+    localStorage.setItem("arasakaAuditoria", JSON.stringify(logs.slice(0, 250)));
+  } catch {}
+}
+
+formAdminLogin.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const usuario = document.querySelector("#usuarioAdmin").value.trim();
+  const senha = document.querySelector("#senhaAdmin").value;
+
+  // Conta administrativa fixa para demonstração. Não use este modelo em produção.
+  if (usuario !== "admin" || senha !== "1234") {
+    eventoAdmin("LOGIN_ADMIN_FALHOU", usuario, "Credenciais administrativas inválidas");
+    msgAdmin.textContent = "Acesso negado. Verifique as credenciais administrativas.";
+    msgAdmin.dataset.type = "error";
+    return;
+  }
+
+  const sessao = {
+    id: String(Date.now()) + Math.random().toString(16).slice(2),
+    usuario: "admin",
+    nome: "Administrador Arasaka",
+    papel: "admin",
+    inicio: new Date().toISOString()
+  };
+  localStorage.setItem("usuarioLogado", sessao.nome);
+  localStorage.setItem("arasakaSessaoAtual", JSON.stringify(sessao));
+  let sessoes = [];
+  try {
+    sessoes = JSON.parse(localStorage.getItem("arasakaSessoes") || "[]");
+    if (!Array.isArray(sessoes)) sessoes = [];
+  } catch {}
+  sessoes.unshift({ ...sessao, estado: "ativa" });
+  localStorage.setItem("arasakaSessoes", JSON.stringify(sessoes.slice(0, 100)));
+  eventoAdmin("LOGIN_ADMIN_SUCESSO", "admin", "Sessão administrativa local iniciada");
+  msgAdmin.textContent = "Acesso autorizado. Abrindo painel...";
+  msgAdmin.dataset.type = "success";
+  window.setTimeout(() => { window.location.href = "admin.html"; }, 350);
+});
