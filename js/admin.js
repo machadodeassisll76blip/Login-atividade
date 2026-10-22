@@ -73,10 +73,10 @@ function renderizarPerfis() {
   const perfis = ler("usuarios").filter((u) => [u.nome,u.usuario,u.email].some((v) => String(v || "").toLowerCase().includes(termo)));
   corpo.innerHTML = perfis.length ? perfis.map((u) => `<tr>
     ${celula(u.nome)}${celula(u.usuario)}${celula(u.email)}
-    ${celula(u.papel === "admin" ? "Diretoria" : "Colaborador")}
+    ${celula("Colaborador")}
     ${celula(u.ativo === false ? "Suspenso" : "Ativo")}
     <td class="inline-actions">
-      ${u.usuario === sessao.usuario ? '<span class="muted-cell">Sessão atual</span>' : `<button class="table-button" data-toggle-user="${escapar(u.usuario)}">${u.ativo === false ? "Reativar" : "Suspender"}</button> <select class="role-select" aria-label="Permissão de ${escapar(u.usuario)}" data-role-user="${escapar(u.usuario)}"><option value="colaborador" ${u.papel !== "admin" ? "selected" : ""}>Colaborador</option><option value="admin" ${u.papel === "admin" ? "selected" : ""}>Admin</option></select> <button class="table-button danger-button" data-delete-user="${escapar(u.usuario)}">Remover</button>`}
+      ${u.usuario === sessao.usuario ? '<span class="muted-cell">Sessão atual</span>' : `<button class="table-button" data-toggle-user="${escapar(u.usuario)}">${u.ativo === false ? "Reativar" : "Suspender"}</button> <button class="table-button danger-button" data-delete-user="${escapar(u.usuario)}">Remover</button>`}
     </td>
   </tr>`).join("") : '<tr><td colspan="6" class="empty-cell">Nenhum perfil corresponde à pesquisa.</td></tr>';
   corpo.querySelectorAll("[data-toggle-user]").forEach((b) => b.addEventListener("click", () => {
