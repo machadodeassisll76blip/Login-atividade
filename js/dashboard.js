@@ -8,11 +8,15 @@ function lerUsuarios() {
 }
 
 const nome = localStorage.getItem("usuarioLogado");
+let sessaoAtual = null;
+try { sessaoAtual = JSON.parse(localStorage.getItem("arasakaSessaoAtual") || "null"); } catch {}
 if (!nome) {
   window.location.replace("index.html");
 } else {
   document.querySelector("#nomeUsuario").textContent = nome;
   document.querySelector("#avatarUsuario").textContent = nome.trim().charAt(0).toUpperCase() || "U";
+  const linkGestao = document.querySelector("#linkGestao");
+  if (linkGestao && sessaoAtual && sessaoAtual.papel === "admin") linkGestao.hidden = false;
 }
 
 function atualizarRelogio() {
@@ -85,7 +89,12 @@ document.querySelector("#botaoAtualizar").addEventListener("click", () => {
   atualizarRelogio();
 });
 document.querySelector("#botaoSair").addEventListener("click", () => {
-  localStorage.removeItem("usuarioLogado");
+  const sessoes = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]"); } catch { return []; } })();
+  localStorage.setItem("arasakaSessoes", JSON.stringify(sessoes.map((s) => s.id === sessaoAtual?.id ? { ...s, estado: "encerrada", fim: new Date().toISOString() } : s)));
+  const logs = (() => { try { return JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]"); } catch { return []; } })();
+  logs.unshift({ id: Date.now(), tipo: "LOGOUT", usuario: sessaoAtual?.usuario || nome, detalhes: "Sessão local encerrada.", data: new Date().toISOString() });
+  localStorage.setItem("arasakaAuditoria", JSON.stringify(logs.slice(0, 250)));
+  localStorage.removeItem("usuarioLogado"); localStorage.removeItem("arasakaSessaoAtual");
   window.location.replace("index.html");
 });
 renderizarUsuarios();
