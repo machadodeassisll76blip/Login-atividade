@@ -30,32 +30,11 @@ Projeto educacional de front-end inspirado numa intranet corporativa cyberpunk. 
 
 ## Primeiro acesso
 
-Crie uma conta pela opção **Criar cadastro**. O primeiro perfil registrado neste navegador recebe permissões de gestão inicial; os perfis seguintes são cadastrados como colaboradores. Não há credenciais universais publicadas no projeto.
+Crie uma conta pela opção **Criar cadastro**. O primeiro perfil de gestão é definido automaticamente neste navegador; os perfis seguintes são cadastrados como colaboradores. Não há credenciais universais publicadas no projeto.
 
-## Estrutura
+## Organização do projeto
 
-```text
-Login-atividade/
-├── index.html
-├── login.html
-├── home.html
-├── dashboard.html
-├── armas.html
-├── admin.html
-├── cadastro.html
-├── css/
-│   └── style.css
-├── js/
-│   ├── login.js
-│   ├── cadastro.js
-│   ├── home.js
-│   ├── dashboard.js
-│   ├── armas.js
-│   └── admin.js
-└── img/
-    ├── arasaka.svg
-    └── back.jfif
-```
+O repositório separa a estrutura das páginas HTML, os estilos em `css/style.css` e as interações em arquivos JavaScript dentro de `js/`. A área de gestão é restrita à sessão com permissão adequada e não publica credenciais de acesso.
 
 ## Limitações e segurança
 
