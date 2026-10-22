@@ -1,33 +1,39 @@
-# Arasaka | Sistema de acesso e dashboard
+# Arasaka Corporation | Internal Net
 
-Projeto educacional de front-end com estética cyberpunk inspirada na Arasaka. O site começa na tela de login e, após a entrada, abre uma Home com navegação para o Dashboard.
+Projeto de estudo de front-end inspirado na estética corporativa cyberpunk da Arasaka, com tela de login, Home temática, dashboard interativo e cadastro local.
 
-## Funcionalidades
+## O que o site oferece
 
-- Login como página principal (`index.html`).
-- Cadastro de usuário com validação e confirmação de senha.
-- Home com boas-vindas, atalhos, indicadores locais e atividade recente.
-- Dashboard com indicadores de demonstração e informações sobre o ambiente.
-- Navegação lateral adaptável a telas menores.
-- Botão para encerrar a sessão de demonstração.
-- CSS e JavaScript separados dos arquivos HTML.
-- Arte vetorial da Arasaka como parte da identidade visual.
+- **Login como página inicial**, com conta de demonstração.
+- **Home corporativa temática:** divisões, comunicados internos, atalhos, relógio em tempo real e busca de módulos.
+- **Terminal simulado:** comandos `help`, `status`, `users`, `whoami`, `divisions`, `date` e `clear`. O terminal não executa comandos reais no computador.
+- **Dashboard:** indicadores locais, relógio, monitoramento visual demonstrativo, registro de eventos e diretório pesquisável de usuários.
+- **Cadastro:** validação de campos e confirmação de senha.
+- **Interface responsiva:** navegação lateral, cartões, detalhes vermelhos, fundo escuro e animações discretas.
+- **Sessão de demonstração:** navegação para Home após o login e botão de saída.
 
 ## Tecnologias
 
-- **HTML5** para a estrutura das páginas.
-- **CSS3** para tema, layout responsivo, cartões e estados de foco.
-- **JavaScript** para validação, navegação e atualização de indicadores.
-- **localStorage** para manter os cadastros e a sessão de demonstração no navegador.
+- HTML5
+- CSS3
+- JavaScript puro (sem frameworks)
+- `localStorage` para guardar cadastros e sessão no navegador
 
-## Executar localmente
+## Executar
 
-1. Clone o repositório:
+1. Clone o projeto:
    ```bash
    git clone https://github.com/machadodeassisll76blip/Login-atividade.git
    ```
 2. Abra a pasta no VS Code.
-3. Execute `index.html` com Live Server ou abra o arquivo diretamente no navegador.
+3. Execute `index.html` com Live Server ou abra-o diretamente no navegador.
+
+## Conta de demonstração
+
+- Usuário: `admin`
+- Senha: `1234`
+
+Também é possível cadastrar um usuário na página **Novo usuário**.
 
 ## Estrutura
 
@@ -52,17 +58,12 @@ Login-atividade/
     └── back.jfif
 ```
 
-## Conta de demonstração
+## Importante sobre segurança
 
-- Usuário: `admin`
-- Senha: `1234`
+Este é um protótipo de front-end, não um sistema de autenticação para produção. Os cadastros são guardados no `localStorage` e as senhas não são protegidas por hash. A sessão pode ser manipulada pelo próprio navegador. Não use credenciais ou informações reais. Um sistema real precisa de backend, hash seguro de senhas e gerenciamento de sessão no servidor.
 
-Também é possível criar uma conta pela página de cadastro.
+Os medidores de infraestrutura, comunicados e eventos corporativos são elementos ficcionais da interface; não representam telemetria ou notícias reais da Arasaka.
 
-## Segurança
+## Objetivo de aprendizagem
 
-Este projeto é somente uma demonstração front-end. As senhas e os cadastros ficam no `localStorage`, sem hash e sem validação de um servidor. A lógica de sessão pode ser contornada pelo navegador. Não utilize senhas reais ou dados pessoais. Um sistema real precisa de backend, hash seguro de senhas e gerenciamento de sessão no servidor.
-
-## Objetivo
-
-Praticar formulários, validação, navegação entre páginas, CSS responsivo, manipulação do DOM e armazenamento local.
+Praticar HTML semântico, CSS responsivo, manipulação do DOM, eventos, filtragem de conteúdo, formulários, armazenamento local e navegação entre páginas.
