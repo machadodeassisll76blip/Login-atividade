@@ -43,7 +43,7 @@ formCadastro.addEventListener("submit", (event) => {
   if (usuarios.some((item) => String(item.usuario).toLowerCase() === usuarioNormalizado)) {
     return falhar(usuario, "Esse nome de usuário já está cadastrado.");
   }
-  const primeiroCadastro = usuarios.length === 0;
+  const primeiroCadastro = !usuarios.some((item) => item.papel === "admin");
   usuarios.push({
     nome: nome.value.trim(),
     email: email.value.trim(),
