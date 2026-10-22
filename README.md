@@ -1,49 +1,64 @@
-# Login-atividade
+# Arasaka | Sistema de login
 
-<p align="center">
-  <strong>Uma atividade prática de desenvolvimento web com estética cyberpunk inspirada na Arasaka.</strong>
-</p>
+Projeto de estudo de desenvolvimento web com identidade visual cyberpunk inspirada na Arasaka. A página principal agora é o **login**; após a autenticação de demonstração, o usuário é encaminhado ao painel.
 
-<p align="center">
-  <img src="img/arasaka.svg" alt="Imagem de fundo do projeto" width="700">
-</p>
+## Funcionalidades
 
-## Sobre o projeto
+- Login pela página principal (`index.html`).
+- Cadastro de usuário com validação de campos, confirmação de senha e verificação de usuário duplicado.
+- Painel separado (`painel.html`) com saudação personalizada.
+- Botão para sair e retornar ao login.
+- Layout responsivo com tema escuro, detalhes vermelhos e arte vetorial.
+- CSS e JavaScript separados dos arquivos HTML para facilitar a manutenção.
 
-Este projeto foi desenvolvido como exercício de HTML, CSS e JavaScript, com páginas de navegação e formulários de login e cadastro. A identidade visual usa um fundo escuro e elementos inspirados no universo cyberpunk, mantendo a imagem original do projeto.
+## Tecnologias
 
-## Páginas
-
-- **Página inicial:** apresenta as opções de navegação.
-- **Login:** interface para entrada de usuário.
-- **Cadastro:** interface para criação de conta.
-
-## Tecnologias utilizadas
-
-- **HTML5** para estruturar as páginas.
-- **CSS3** para cores, fundos, formulários, efeitos visuais e responsividade.
-- **JavaScript** para os comportamentos programados nas páginas.
+- **HTML5**: estrutura e formulários.
+- **CSS3**: identidade visual, responsividade, foco visível e estados de formulário.
+- **JavaScript**: validação e navegação entre as páginas.
+- **localStorage**: armazenamento local dos cadastros para fins de demonstração.
 
 ## Como executar
 
-1. Faça o download do repositório ou clone-o:
+1. Clone o repositório:
    ```bash
    git clone https://github.com/machadodeassisll76blip/Login-atividade.git
    ```
-2. Entre na pasta do projeto:
+2. Entre na pasta:
    ```bash
    cd Login-atividade
    ```
-3. Abra o arquivo `index.html` no navegador. Você também pode abrir a pasta no VS Code e usar uma extensão de servidor local, como o Live Server.
+3. Abra a pasta no VS Code e execute `index.html` com uma extensão como Live Server, ou abra o arquivo diretamente no navegador.
 
-> **Observação:** mantenha a pasta `img` junto dos arquivos HTML para que a imagem de fundo seja carregada corretamente.
+A estrutura esperada é:
+
+```text
+Login-atividade/
+├── index.html
+├── login.html
+├── cadastro.html
+├── painel.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── login.js
+│   ├── cadastro.js
+│   └── painel.js
+└── img/
+    └── arasaka.svg
+```
+
+## Conta de demonstração
+
+- **Usuário:** `admin`
+- **Senha:** `1234`
+
+Você também pode criar uma conta na página de cadastro.
+
+## Observação importante sobre segurança
+
+Este é um exercício front-end, não um sistema de autenticação pronto para produção. Os dados são guardados no `localStorage`, e as senhas de demonstração ficam armazenadas sem proteção criptográfica. A verificação feita no navegador pode ser contornada; não use dados reais ou senhas pessoais. Um sistema real precisa de backend, armazenamento seguro de senhas com hash e controle de sessão no servidor.
 
 ## Objetivo de aprendizagem
 
-Praticar a construção de páginas web, a organização de elementos HTML, a estilização com CSS e a implementação de interações com JavaScript.
-
----
-
-<p align="center">
-  Feito como projeto de estudo.
-</p>
+Praticar HTML, CSS e JavaScript, separação de responsabilidades, validação de formulários, armazenamento local e navegação entre páginas.
