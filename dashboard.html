@@ -4,70 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070707">
-  <meta name="description" content="Dashboard de demonstração da Arasaka.">
+  <meta name="description" content="Centro de comando e monitoramento da Arasaka.">
   <title>Arasaka | Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <p class="sidebar-brand">ARASAKA</p>
+      <p class="sidebar-brand">ARASAKA<span style="color:#777;font-size:.55em;display:block;letter-spacing:.24em;margin-top:5px">CORPORATION // NET</span></p>
       <p class="nav-label">Workspace</p>
       <nav class="side-nav" aria-label="Navegação principal">
-        <a href="home.html">Home</a>
-        <a href="dashboard.html" aria-current="page">Dashboard</a>
-        <a href="cadastro.html">Novo usuário</a>
+        <a href="home.html">⌂ &nbsp; Home</a>
+        <a href="dashboard.html" aria-current="page">▦ &nbsp; Dashboard</a>
+        <a href="cadastro.html">＋ &nbsp; Novo usuário</a>
+      </nav>
+      <p class="nav-label">Monitoramento</p>
+      <nav class="side-nav" aria-label="Monitoramento">
+        <a href="#servicos">◉ &nbsp; Serviços</a>
+        <a href="#diretorio">▤ &nbsp; Diretório</a>
+        <a href="#eventos">◷ &nbsp; Eventos</a>
       </nav>
       <p class="nav-label">Sistema</p>
-      <nav class="side-nav" aria-label="Sistema">
-        <a href="index.html">Tela de login</a>
-      </nav>
-      <p class="sidebar-note">AMBIENTE DE DEMONSTRAÇÃO<br>Indicadores locais, sem servidor.</p>
+      <nav class="side-nav" aria-label="Sistema"><a href="index.html">↪ &nbsp; Tela de login</a></nav>
+      <p class="sidebar-note">NIGHT CITY • OPERATIONS<br>Console de monitoramento educacional</p>
     </aside>
     <main class="app-main">
       <header class="app-topbar">
-        <div>
-          <p class="breadcrumb">Workspace / Dashboard</p>
-          <h1 class="page-title">Dashboard</h1>
-        </div>
-        <div class="topbar-actions">
-          <span class="status-pill">Sistema local ativo</span>
-          <div class="user-chip"><span class="user-avatar" id="avatarUsuario">A</span><span id="nomeUsuario">Usuário</span></div>
-          <button class="button-secondary" id="botaoSair" type="button">Sair</button>
-        </div>
+        <div><p class="breadcrumb">ARASAKA NET / OPERATIONS / DASHBOARD</p><h1 class="page-title">Centro de comando</h1></div>
+        <div class="topbar-actions"><span class="status-pill">Interface ativa</span><div class="user-chip"><span class="user-avatar" id="avatarUsuario">A</span><span id="nomeUsuario">Usuário</span></div><button class="button-secondary" id="botaoSair" type="button">Sair</button></div>
       </header>
       <section class="panel hero-panel">
-        <p class="eyebrow">Painel de controle</p>
-        <h2>Visão geral do sistema.</h2>
-        <p>Este dashboard reúne indicadores simples calculados a partir dos dados guardados no navegador. São números demonstrativos, não dados de um servidor real.</p>
+        <p class="eyebrow">Executive systems // Internal monitoring</p>
+        <h2>Inteligência é controle.</h2>
+        <p>Monitore os indicadores do ambiente, consulte o diretório de perfis e acompanhe os serviços simulados. Os dados operacionais são demonstrativos; apenas a contagem de cadastros vem do armazenamento local.</p>
+        <div class="hero-meta"><span>DATA <b id="dataAtual">--</b></span><span>HORA <b id="relogio" class="digital-clock">--:--:--</b></span><span>AMBIENTE <b>LOCAL / FRONT-END</b></span></div>
       </section>
-      <div class="section-heading">
-        <h2>Indicadores</h2>
-        <p>Atualizados ao abrir esta página</p>
-      </div>
-      <section class="stats-grid" aria-label="Indicadores do sistema">
-        <article class="panel stat-card"><div class="stat-top"><span>Contas cadastradas</span><span class="stat-icon">U</span></div><strong class="stat-value" id="totalUsuarios">0</strong><span class="stat-foot">Total registrado neste navegador</span></article>
-        <article class="panel stat-card"><div class="stat-top"><span>Tipo de armazenamento</span><span class="stat-icon">L</span></div><strong class="stat-value">Local</strong><span class="stat-foot">Dados mantidos no localStorage</span></article>
-        <article class="panel stat-card"><div class="stat-top"><span>Conexão backend</span><span class="stat-icon">!</span></div><strong class="stat-value">Não usada</strong><span class="stat-foot">Projeto front-end sem API ou servidor</span></article>
+      <div class="section-heading"><h2>Indicadores executivos</h2><p>Resumo do ambiente</p></div>
+      <section class="stats-grid" aria-label="Indicadores executivos">
+        <article class="panel stat-card"><div class="stat-top"><span>Perfis registrados</span><span class="stat-icon">ID</span></div><strong class="stat-value" id="totalUsuarios">0</strong><span class="stat-foot">Cadastros guardados neste navegador</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Serviços disponíveis</span><span class="stat-icon">SYS</span></div><strong class="stat-value">04 / 04</strong><span class="stat-foot">Estados ilustrativos da interface</span></article>
+        <article class="panel stat-card"><div class="stat-top"><span>Alertas críticos</span><span class="stat-icon">!</span></div><strong class="stat-value">00</strong><span class="stat-foot">Nenhum alerta real é monitorado</span></article>
       </section>
-      <section class="content-grid">
+      <section id="servicos">
+        <div class="section-heading"><h2>Monitoramento de serviços</h2><span class="live-indicator">STATUS SIMULADO</span></div>
+        <section class="content-grid">
+          <article class="panel content-panel">
+            <h2>Integridade dos módulos</h2>
+            <div class="meter-list">
+              <div><div class="meter-head"><span>Interface corporativa</span><strong>100%</strong></div><div class="meter-track"><div class="meter-fill" style="width:100%"></div></div></div>
+              <div><div class="meter-head"><span>Diretório local</span><strong id="integridadeDiretorio">100%</strong></div><div class="meter-track"><div class="meter-fill" id="barraDiretorio" style="width:100%"></div></div></div>
+              <div><div class="meter-head"><span>Serviço de autenticação</span><strong>DEMO</strong></div><div class="meter-track"><div class="meter-fill" style="width:68%"></div></div></div>
+              <div><div class="meter-head"><span>API corporativa</span><strong>N/A</strong></div><div class="meter-track"><div class="meter-fill" style="width:8%"></div></div></div>
+            </div>
+            <p class="terminal-note" style="padding:18px 0 0">As barras representam apenas a interface visual do projeto, não medições reais de infraestrutura.</p>
+          </article>
+          <article class="panel content-panel">
+            <h2>Diagnóstico rápido</h2>
+            <div class="activity-list">
+              <div class="activity-item"><span class="activity-dot"></span><div><strong>Front-end</strong><span>HTML, CSS e JavaScript carregados pelo navegador.</span></div></div>
+              <div class="activity-item"><span class="activity-dot"></span><div><strong>Persistência</strong><span id="estadoPersistencia">Consultando armazenamento local...</span></div></div>
+              <div class="activity-item"><span class="activity-dot"></span><div><strong>Backend / API</strong><span>Não configurado neste projeto.</span></div></div>
+            </div>
+            <button class="button-secondary" id="botaoAtualizar" type="button" style="margin-top:12px">↻ Atualizar indicadores</button>
+          </article>
+        </section>
+      </section>
+      <section id="diretorio">
+        <div class="section-heading"><h2>Diretório de usuários</h2><p>Registros locais deste navegador</p></div>
+        <div class="filter-row"><span class="section-kicker">IDENTITY MANAGEMENT</span><input id="filtroUsuarios" type="search" placeholder="Buscar por nome, usuário ou e-mail..." aria-label="Buscar usuários"></div>
+        <article class="panel content-panel" style="padding:0;overflow:hidden">
+          <div style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;text-align:left;font-size:.84rem">
+              <thead><tr style="color:#a69ca8;background:rgba(255,255,255,.035)"><th style="padding:14px 18px">Nome</th><th style="padding:14px 18px">Usuário</th><th style="padding:14px 18px">E-mail</th><th style="padding:14px 18px">Status</th></tr></thead>
+              <tbody id="tabelaUsuarios"><tr><td colspan="4" style="padding:20px;color:#a69ca8">Carregando diretório...</td></tr></tbody>
+            </table>
+          </div>
+          <p class="terminal-note" id="resultadoUsuarios" style="padding:12px 18px">Dados locais, não sincronizados com um servidor.</p>
+        </article>
+      </section>
+      <section class="content-grid" id="eventos">
         <article class="panel content-panel">
-          <h2>Eventos do ambiente</h2>
-          <div class="activity-list">
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Autenticação de demonstração</strong><span>A sessão é simulada no navegador para fins de aprendizagem.</span></div></div>
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Cadastro local</strong><span>Os usuários cadastrados são lidos do armazenamento local.</span></div></div>
-            <div class="activity-item"><span class="activity-dot"></span><div><strong>Interface responsiva</strong><span>O layout se adapta a desktop, tablet e celular.</span></div></div>
+          <h2>Registro de eventos</h2>
+          <div class="timeline">
+            <div class="timeline-row"><span class="timeline-time" id="horaEvento1">--:--:--</span><span class="timeline-marker"></span><div class="timeline-text"><strong>Console de operações carregado</strong><span>Interface de monitoramento pronta para consulta.</span></div></div>
+            <div class="timeline-row"><span class="timeline-time">SESSION</span><span class="timeline-marker"></span><div class="timeline-text"><strong>Sessão local identificada</strong><span>O nome exibido é obtido do armazenamento do navegador.</span></div></div>
+            <div class="timeline-row"><span class="timeline-time">SYSTEM</span><span class="timeline-marker"></span><div class="timeline-text"><strong>API externa não configurada</strong><span>Os dados de infraestrutura são ilustrativos neste protótipo.</span></div></div>
           </div>
         </article>
         <article class="panel content-panel">
-          <h2>Ações</h2>
+          <h2>Comandos rápidos</h2>
           <div class="quick-links">
-            <a class="quick-link" href="home.html"><span><strong>Voltar à Home</strong><small>Página inicial do workspace</small></span><span>↗</span></a>
-            <a class="quick-link" href="cadastro.html"><span><strong>Novo usuário</strong><small>Abrir formulário de cadastro</small></span><span>↗</span></a>
+            <a class="quick-link" href="home.html"><span><strong>Voltar à Home</strong><small>Central de operações e divisões</small></span><span>↗</span></a>
+            <a class="quick-link" href="cadastro.html"><span><strong>Cadastrar colaborador</strong><small>Adicionar perfil ao diretório local</small></span><span>↗</span></a>
+            <a class="quick-link" href="README.md"><span><strong>Documentação técnica</strong><small>Estrutura e limitações do projeto</small></span><span>↗</span></a>
           </div>
         </article>
       </section>
-      <footer class="app-footer">ARASAKA // Dashboard demonstrativo</footer>
+      <footer class="app-footer">ARASAKA CORPORATION // DATA IS POWER // PROJETO EDUCACIONAL</footer>
     </main>
   </div>
   <script src="js/dashboard.js" defer></script>
