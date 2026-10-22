@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="img/back.jfif" alt="Imagem de fundo do projeto" width="700">
+  <img src="img/arasaka.svg" alt="Imagem de fundo do projeto" width="700">
 </p>
 
 ## Sobre o projeto
