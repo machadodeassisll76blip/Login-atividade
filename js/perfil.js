@@ -11,7 +11,7 @@ if (!sessao || !sessao.usuario || !nomeSessao || !sessaoAtiva) {
 }
 const usuarioAtual = String(sessao?.usuario || "");
 const chavePerfil = "arasakaPerfil_" + usuarioAtual.toLowerCase();
-const padrao = { nome: sessao?.nome || nomeSessao || usuarioAtual, titulo: "", bio: "", local: "", site: "", github: "", rede: "", status: "Disponível", pronomes: "", cor: "#ed101b", foto: "", banner: "" };
+const padrao = { nome: sessao?.nome || nomeSessao || usuarioAtual, titulo: "", bio: "", local: "", site: "", github: "", rede: "", status: "Disponível", pronomes: "", cor: (() => { try { return localStorage.getItem("arasakaThemeColor") || "#ed101b"; } catch { return "#ed101b"; } })(), foto: "", banner: "" };
 let perfil = { ...padrao };
 try { perfil = { ...padrao, ...JSON.parse(localStorage.getItem(chavePerfil) || "{}") }; } catch {}
 const campos = {
