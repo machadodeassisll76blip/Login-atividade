@@ -10,7 +10,8 @@ function lerUsuarios() {
 const nome = localStorage.getItem("usuarioLogado");
 let sessaoAtual = null;
 try { sessaoAtual = JSON.parse(localStorage.getItem("arasakaSessaoAtual") || "null"); } catch {}
-if (!nome) {
+const registroSessao = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").find((s) => s.id === sessaoAtual?.id); } catch { return null; } })();
+if (!nome || !sessaoAtual || !registroSessao || registroSessao.estado !== "ativa") {
   window.location.replace("index.html");
 } else {
   document.querySelector("#nomeUsuario").textContent = nome;
