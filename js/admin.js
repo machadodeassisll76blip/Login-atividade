@@ -45,7 +45,7 @@ function renderizarTudo() {
   document.querySelector("#totalPerfis").textContent = ler("usuarios").length;
   document.querySelector("#totalSessoes").textContent = ler("arasakaSessoes").length;
   document.querySelector("#totalEventos").textContent = ler("arasakaAuditoria").length;
-  renderizarSessoes(); renderizarPerfis(); renderizarInventario(); renderizarAuditoria();
+  renderizarSessoes(); renderizarPerfis(); renderizarInventario(); renderizarSolicitacoes(); renderizarAuditoria();
 }
 function celula(texto) { return `<td>${escapar(texto)}</td>`; }
 function renderizarSessoes() {
@@ -112,6 +112,17 @@ function adicionarItem(event) {
   document.querySelector("#formArma").reset();
   const msg = document.querySelector("#mensagemInventario"); msg.textContent = "Item adicionado ao catálogo deste navegador."; msg.dataset.type = "success";
   renderizarTudo();
+}
+function renderizarSolicitacoes() {
+  const corpo = document.querySelector("#tabelaSolicitacoes");
+  const pedidos = ler("arasakaSolicitacoes");
+  corpo.innerHTML = pedidos.length ? pedidos.map((p) => `<tr>${celula(dataLocal(p.data))}${celula(p.usuario)}${celula(p.item)}${celula(p.estado || "Registrada localmente")}<td>${p.estado === "Concluída" ? "—" : `<button class="table-button" data-resolver-solicitacao="${escapar(p.id)}">Marcar concluída</button>`}</td></tr>`).join("") : '<tr><td colspan="5" class="empty-cell">Nenhuma solicitação recebida neste navegador.</td></tr>';
+  corpo.querySelectorAll("[data-resolver-solicitacao]").forEach((b) => b.addEventListener("click", () => {
+    const atualizados = ler("arasakaSolicitacoes").map((p) => String(p.id) === b.dataset.resolverSolicitacao ? { ...p, estado:"Concluída", concluidaEm:new Date().toISOString() } : p);
+    gravar("arasakaSolicitacoes", atualizados);
+    auditar("SOLICITACAO_CONCLUIDA", "Solicitação comercial atualizada.");
+    renderizarTudo();
+  }));
 }
 function renderizarAuditoria() {
   const corpo = document.querySelector("#tabelaAuditoria");
