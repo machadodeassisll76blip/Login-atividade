@@ -81,6 +81,13 @@ function atualizarPreview() {
   const site = linkValido(p.site);
   link.hidden = !site;
   if (site) link.href = site;
+  const redes = $("#linksPerfil");
+  redes.replaceChildren();
+  [["GitHub", p.github], ["Outra rede", p.rede]].forEach(([rotulo, valor]) => {
+    const destino = linkValido(valor);
+    if (!destino) return;
+    const a = document.createElement("a"); a.href = destino; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = rotulo + " ↗"; redes.append(a);
+  });
   const itens = [
     ["Nome", Boolean(p.nome)], ["Foto de perfil", Boolean(p.foto)], ["Banner", Boolean(p.banner)],
     ["Biografia", Boolean(p.bio)], ["Título", Boolean(p.titulo)], ["Localização", Boolean(p.local)],
