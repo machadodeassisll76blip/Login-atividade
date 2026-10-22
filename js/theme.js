@@ -6,7 +6,6 @@
     const valida = /^#[0-9a-f]{6}$/i.test(cor || "") ? cor : padrao;
     document.documentElement.style.setProperty("--red", valida);
     document.documentElement.style.setProperty("--red-hover", "color-mix(in srgb, " + valida + " 78%, white)");
-    document.documentElement.style.setProperty("--profile-accent", valida);
     if (seletor) seletor.value = valida;
     return valida;
   }
