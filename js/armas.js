@@ -1,6 +1,7 @@
 const sessaoAtual = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessaoAtual") || "null"); } catch { return null; } })();
 const nomeAtual = localStorage.getItem("usuarioLogado");
-if (!sessaoAtual || !nomeAtual) window.location.replace("index.html");
+const registroSessao = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").find((s) => s.id === sessaoAtual?.id); } catch { return null; } })();
+if (!sessaoAtual || !nomeAtual || !registroSessao || registroSessao.estado !== "ativa") window.location.replace("index.html");
 else {
   document.querySelector("#nomeUsuario").textContent = nomeAtual;
   document.querySelector("#avatarUsuario").textContent = nomeAtual.trim().charAt(0).toUpperCase() || "U";
