@@ -14,9 +14,14 @@ const registroSessao = (() => { try { return JSON.parse(localStorage.getItem("ar
 if (!nome || !sessaoAtual || !registroSessao || registroSessao.estado !== "ativa") {
   window.location.replace("index.html");
 } else {
-  document.querySelector("#nomeUsuario").textContent = nome;
-  document.querySelector("#avatarUsuario").textContent = nome.trim().charAt(0).toUpperCase() || "U";
-  document.querySelector("#tituloBoasVindas").textContent = `Bem-vindo, ${nome}. O futuro não espera.`;
+  let perfilTopo = {};
+  try { perfilTopo = JSON.parse(localStorage.getItem("arasakaPerfil_" + String(sessaoAtual.usuario || "").toLowerCase()) || "{}"); } catch {}
+  const nomeExibicao = perfilTopo.nome || nome;
+  document.querySelector("#nomeUsuario").textContent = nomeExibicao;
+  const avatarTopo = document.querySelector("#avatarUsuario");
+  if (perfilTopo.foto) { const imagem = document.createElement("img"); imagem.src = perfilTopo.foto; imagem.alt = ""; avatarTopo.replaceChildren(imagem); }
+  else avatarTopo.textContent = (nomeExibicao.trim().charAt(0) || "U").toUpperCase();
+  document.querySelector("#tituloBoasVindas").textContent = `Bem-vindo, ${"${nomeExibicao}"}. O futuro não espera.`;
   document.querySelector("#totalUsuarios").textContent = lerUsuarios().length;
   const linkGestao = document.querySelector("#linkGestao");
   if (linkGestao && sessaoAtual && sessaoAtual.papel === "admin") linkGestao.hidden = false;
