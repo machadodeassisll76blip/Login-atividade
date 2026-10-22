@@ -8,6 +8,7 @@ Projeto educacional de front-end inspirado numa intranet corporativa cyberpunk. 
 - **Home:** divisões corporativas, comunicados, relógio, busca de módulos e terminal interativo.
 - **Terminal:** comandos `help`, `status`, `users`, `whoami`, `divisions`, `arms`, `sessions`, `audit`, `date`, `open` e `clear`.
 - **Dashboard:** diretório pesquisável, indicadores e eventos locais.
+- **Perfil pessoal:** editor de nome de exibição, foto, banner, biografia, função, localização, portfólio, links sociais, status, pronomes e cor de destaque; prévia ao vivo e indicador de completude.
 - **Arasaka Arms:** catálogo pesquisável, filtro por categoria e solicitações de informação.
 - **Gestão interna:** registros locais de sessões, pesquisa de perfis, suspensão e remoção de contas, inventário da divisão Arasaka Arms e auditoria exportável em JSON.
 - **Inventário:** adicionar e remover itens do catálogo ficcional.
@@ -18,6 +19,7 @@ Projeto educacional de front-end inspirado numa intranet corporativa cyberpunk. 
 - HTML5 e CSS3
 - JavaScript puro
 - `localStorage` para persistência local no navegador
+- Fotos e banners convertidos para dados locais, limitados a 1 MB por imagem
 
 ## Executar localmente
 
