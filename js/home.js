@@ -71,15 +71,23 @@ consoleForm.addEventListener("submit", (event) => {
   }
   imprimirConsole(`root@arasaka:~$ ${comando}`);
   const respostas = {
-    help: "Comandos disponíveis:\n  help       lista os comandos\n  status     mostra o estado da interface\n  users      conta os perfis locais\n  whoami     mostra o usuário da sessão\n  divisions  lista as divisões corporativas\n  date       mostra data e horário local\n  clear      limpa o terminal",
+    help: "Comandos disponíveis:\n  help       lista os comandos\n  status     mostra o estado da interface\n  users      conta os perfis locais\n  whoami     mostra o usuário da sessão\n  divisions  lista as divisões corporativas\n  arms       catálogo Arasaka Arms\n  sessions   sessões locais\n  audit      eventos recentes\n  date       mostra data e horário local\n  open       navegar entre módulos\n  clear      limpa o terminal",
     status: "INTERFACE: ONLINE\nBACKEND: NÃO CONFIGURADO\nARMAZENAMENTO: localStorage\nMODO: DEMONSTRAÇÃO FRONT-END",
     users: `Perfis cadastrados neste navegador: ${lerUsuarios().length}`,
     whoami: `Sessão local ativa para: ${nome || "visitante"}`,
-    divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa\\nARS // Arasaka Arms",
+    divisions: "SEC // Segurança Corporativa\nR&D // Pesquisa e Desenvolvimento\nOPS // Operações\nNET // Infraestrutura de Rede\nHR // Recursos Humanos\nINT // Inteligência Corporativa\nARS // Arasaka Arms",
     date: new Date().toLocaleString("pt-BR"),
     arms: `Itens do catálogo: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaInventario") || "[]").length; } catch { return 0; } })()}. Acesse armas.html para explorar.`,
     sessions: `Sessões locais registradas: ${(() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").length; } catch { return 0; } })()}`,
     audit: (() => { try { return JSON.parse(localStorage.getItem("arasakaAuditoria") || "[]").slice(0, 5).map((l) => `${l.tipo} | ${l.usuario}`).join("\\n") || "Nenhum evento registrado."; } catch { return "Histórico indisponível."; } })()
   };
+  if (comando.startsWith("open ")) {
+    const destino = comando.slice(5).trim();
+    const rotas = { home:"home.html", dashboard:"dashboard.html", arms:"armas.html", gestao:"admin.html" };
+    if (!rotas[destino]) imprimirConsole("Destino inválido. Use home, dashboard, arms ou gestao.");
+    else if (destino === "gestao" && sessaoAtual?.papel !== "admin") imprimirConsole("Permissão insuficiente para este módulo.");
+    else window.location.href = rotas[destino];
+    return;
+  }
   imprimirConsole(respostas[comando] || `Comando não reconhecido: ${comando}. Digite "help" para consultar a lista.`);
 });
