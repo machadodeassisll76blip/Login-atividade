@@ -21,7 +21,7 @@ if (!nome || !sessaoAtual || !registroSessao || registroSessao.estado !== "ativa
   const avatarTopo = document.querySelector("#avatarUsuario");
   if (perfilTopo.foto) { const imagem = document.createElement("img"); imagem.src = perfilTopo.foto; imagem.alt = ""; avatarTopo.replaceChildren(imagem); }
   else avatarTopo.textContent = (nomeExibicao.trim().charAt(0) || "U").toUpperCase();
-  document.querySelector("#tituloBoasVindas").textContent = `Bem-vindo, ${"${nomeExibicao}"}. O futuro não espera.`;
+  document.querySelector("#tituloBoasVindas").textContent = `Bem-vindo, ${nomeExibicao}. O futuro não espera.`;
   document.querySelector("#totalUsuarios").textContent = lerUsuarios().length;
   const linkGestao = document.querySelector("#linkGestao");
   if (linkGestao && sessaoAtual && sessaoAtual.papel === "admin") linkGestao.hidden = false;
