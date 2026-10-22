@@ -328,3 +328,7 @@ select:focus { outline:2px solid rgba(255,98,107,.75); outline-offset:2px; }
 #avatarUsuario img { border-radius:50%; }
 @media(max-width:900px) { .profile-layout { grid-template-columns:1fr; } .profile-side-column { grid-template-columns:repeat(2,minmax(0,1fr)); } .profile-side-column .profile-card:last-child { grid-column:1/-1; } }
 @media(max-width:620px) { .profile-cover { min-height:155px; } .profile-overview { align-items:flex-start; gap:12px; padding:0 14px 18px; flex-wrap:wrap; } .profile-avatar { width:76px; height:76px; font-size:1.5rem; } .profile-avatar-wrap { margin-top:-34px; } .profile-overview-text { padding-top:12px; flex-basis:calc(100% - 100px); } .profile-overview-text h2 { font-size:1.3rem; } .profile-badge { margin:0 0 0 90px; } .profile-form-grid,.profile-side-column { grid-template-columns:1fr; } .profile-side-column .profile-card:last-child { grid-column:auto; } .profile-actions button { flex:1 1 100%; width:100%; } }
+
+.profile-social-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.profile-social-links a { display:inline-flex; padding:7px 9px; border:1px solid rgba(255,255,255,.12); border-radius:7px; color:#e8dfe9; font-size:.76rem; text-decoration:none; }
+.profile-social-links a:hover { border-color:var(--profile-accent); color:#fff; }
