@@ -3,8 +3,13 @@ const nomeAtual = localStorage.getItem("usuarioLogado");
 const registroSessao = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").find((s) => s.id === sessaoAtual?.id); } catch { return null; } })();
 if (!sessaoAtual || !nomeAtual || !registroSessao || registroSessao.estado !== "ativa") window.location.replace("index.html");
 else {
-  document.querySelector("#nomeUsuario").textContent = nomeAtual;
-  document.querySelector("#avatarUsuario").textContent = nomeAtual.trim().charAt(0).toUpperCase() || "U";
+  let perfilTopo = {};
+  try { perfilTopo = JSON.parse(localStorage.getItem("arasakaPerfil_" + String(sessaoAtual.usuario || "").toLowerCase()) || "{}"); } catch {}
+  const nomeExibicao = perfilTopo.nome || nomeAtual;
+  document.querySelector("#nomeUsuario").textContent = nomeExibicao;
+  const avatarTopo = document.querySelector("#avatarUsuario");
+  if (perfilTopo.foto) { const imagem = document.createElement("img"); imagem.src = perfilTopo.foto; imagem.alt = ""; avatarTopo.replaceChildren(imagem); }
+  else avatarTopo.textContent = (nomeExibicao.trim().charAt(0) || "U").toUpperCase();
   const linkGestao = document.querySelector("#linkGestao");
   if (linkGestao && sessaoAtual.papel === "admin") linkGestao.hidden = false;
 }
