@@ -248,3 +248,28 @@ button:disabled { cursor: wait; opacity: .7; transform: none; }
   .app-main > *:nth-child(4) { animation-delay: .12s; }
   @keyframes interface-entry { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 }
+
+/* Gestão interna e catálogo Arasaka Arms */
+.brand-subline { color:#777; font-size:.55em; display:block; letter-spacing:.24em; margin-top:5px; }
+select { width:100%; min-height:44px; padding:10px 12px; border:1px solid #49434a; border-radius:8px; background:#111014; color:var(--text); font:inherit; }
+select:focus { outline:2px solid rgba(255,98,107,.75); outline-offset:2px; }
+.admin-section { margin-top:16px; scroll-margin-top:20px; }
+.admin-help { margin:0 0 16px; color:#a9a1ab; font-size:.84rem; line-height:1.65; }
+.table-wrap { width:100%; overflow-x:auto; border:1px solid rgba(255,255,255,.08); border-radius:10px; }
+.table-wrap table { width:100%; min-width:680px; border-collapse:collapse; text-align:left; font-size:.82rem; }
+.table-wrap th { padding:13px 15px; color:#bcb2bf; background:rgba(255,255,255,.035); font-weight:750; white-space:nowrap; }
+.table-wrap td { padding:13px 15px; border-top:1px solid rgba(255,255,255,.07); color:#ddd4df; vertical-align:middle; }
+.table-wrap tbody tr:hover { background:rgba(237,16,27,.045); }
+.table-button { width:auto; min-height:32px; padding:6px 9px; border:1px solid #51434c; border-radius:6px; background:#19151a; color:#eee; font-size:.74rem; white-space:nowrap; }
+.table-button:hover { border-color:var(--red); background:rgba(237,16,27,.12); }
+.danger-button { border-color:rgba(255,90,100,.35); color:#ff9299; }
+.empty-cell, .muted-cell { padding:20px 15px; color:#928995; font-size:.82rem; }
+.inline-actions { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+.admin-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 14px; margin:18px 0 8px; }
+.admin-form .form-group { min-width:0; }
+.admin-form button { grid-column:1/-1; }
+.arms-card { display:flex; flex-direction:column; align-items:flex-start; }
+.arms-card .arms-state { display:inline-flex; margin-top:12px; padding:5px 8px; border:1px solid rgba(110,231,160,.2); border-radius:99px; color:#a0eabd; background:rgba(110,231,160,.06); font-size:.72rem; }
+.arms-card button { position:relative; z-index:1; margin-top:16px; }
+#filtroClasse { width:min(100%,300px); }
+@media(max-width:620px) { .admin-form { grid-template-columns:1fr; } .admin-form button { grid-column:auto; } .section-heading { align-items:flex-start; flex-direction:column; } .section-heading .inline-actions { width:100%; } .section-heading .inline-actions button { flex:1; } }
