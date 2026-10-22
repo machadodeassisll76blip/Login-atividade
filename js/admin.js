@@ -12,7 +12,8 @@ function auditar(tipo, detalhes = "") {
 }
 let sessao = null;
 try { sessao = JSON.parse(localStorage.getItem("arasakaSessaoAtual") || "null"); } catch {}
-if (!sessao || sessao.papel !== "admin" || !localStorage.getItem("usuarioLogado")) {
+const sessaoRegistrada = (() => { try { return JSON.parse(localStorage.getItem("arasakaSessoes") || "[]").find((s) => s.id === sessao?.id); } catch { return null; } })();
+if (!sessao || sessao.papel !== "admin" || !localStorage.getItem("usuarioLogado") || !sessaoRegistrada || sessaoRegistrada.estado !== "ativa") {
   window.location.replace("index.html");
 } else {
   iniciarPainel();
