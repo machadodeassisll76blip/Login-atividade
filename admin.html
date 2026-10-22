@@ -26,7 +26,7 @@
         <a href="#pessoas">▤ &nbsp; Diretório</a>
         <a href="#armamentos">▣ &nbsp; Arasaka Arms</a>
         <a href="#solicitacoes">◈ &nbsp; Solicitações comerciais</a>
-        <a href="#auditoria">⌘ &nbsp; Auditoria</a>
+        <a href="#auditoria">⌘ &nbsp; Auditoria</a><a href="#relatorios">▥ &nbsp; Relatórios</a><a href="#terminalAdmin">&gt;_ &nbsp; Terminal</a><a href="#backup">⇩ &nbsp; Backup local</a>
       </nav>
       <p class="sidebar-note">ACESSO RESTRITO<br>Eventos e dados locais deste navegador.</p>
     </aside>
@@ -79,6 +79,22 @@
         <p class="admin-help">Registra eventos do protótipo, como logins, falhas de acesso, cadastros e alterações no inventário. Senhas não devem ser registradas.</p>
         <div class="filter-row"><span class="section-kicker">LOCAL EVENT LOG</span><input id="filtroAuditoria" type="search" placeholder="Buscar evento..." aria-label="Buscar evento"></div>
         <div class="table-wrap"><table><thead><tr><th>Data</th><th>Evento</th><th>Usuário</th><th>Detalhes</th></tr></thead><tbody id="tabelaAuditoria"></tbody></table></div>
+      </section>
+      <section class="panel content-panel admin-section" id="relatorios">
+        <div class="section-heading" style="margin-top:0"><h2>Relatórios executivos</h2><button class="button-secondary" id="atualizarRelatorios" type="button">Atualizar indicadores</button></div>
+        <p class="admin-help">Indicadores calculados a partir dos registros deste navegador.</p>
+        <div class="stats-grid report-grid"><article class="panel stat-card"><div class="stat-top"><span>Contas ativas</span></div><strong class="stat-value" id="relContasAtivas">0</strong></article><article class="panel stat-card"><div class="stat-top"><span>Solicitações pendentes</span></div><strong class="stat-value" id="relSolicitacoes">0</strong></article><article class="panel stat-card"><div class="stat-top"><span>Itens no inventário</span></div><strong class="stat-value" id="relInventario">0</strong></article></div>
+        <div class="inline-actions report-actions"><button class="button-secondary" id="exportarRelatorio" type="button">Exportar relatório CSV</button></div>
+      </section>
+      <section class="panel content-panel admin-section" id="terminalAdmin">
+        <div class="section-heading" style="margin-top:0"><h2>Terminal administrativo</h2><span class="section-kicker">LOCAL SHELL / SAFE COMMANDS</span></div>
+        <p class="admin-help">Terminal simulado para consultar dados locais. Não executa comandos do sistema operacional.</p>
+        <div class="console"><div class="console-head"><span>arasaka-admin@local:~</span><span>LOCAL DATA</span></div><pre id="saidaTerminalAdmin" class="console-output" aria-live="polite">Terminal iniciado. Digite help para ver os comandos.</pre><form id="formTerminalAdmin" class="console-form"><label for="comandoAdmin">admin&gt;</label><input id="comandoAdmin" autocomplete="off" placeholder="help" aria-label="Comando administrativo"><button type="submit">Executar</button></form></div>
+      </section>
+      <section class="panel content-panel admin-section" id="backup">
+        <div class="section-heading" style="margin-top:0"><h2>Backup e exportação</h2><span class="section-kicker">LOCAL DATA ARCHIVE</span></div>
+        <p class="admin-help">O backup JSON remove os campos de senha. O arquivo é baixado no dispositivo e não é enviado a um servidor.</p>
+        <div class="inline-actions"><button id="criarBackup" type="button">Baixar backup seguro JSON</button><button id="exportarUsuarios" class="button-secondary" type="button">Exportar diretório CSV</button></div><p id="mensagemBackup" class="message" role="status" aria-live="polite"></p>
       </section>
       <footer class="app-footer">ARASAKA CORPORATION // INTERNAL AFFAIRS // PROTÓTIPO FRONT-END</footer>
     </main>
